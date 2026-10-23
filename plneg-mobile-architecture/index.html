@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Arsitektur aplikasi mobile EGIS (iOffice PLN EG): Clean Architecture, state management, autentikasi JWT ke Odoo, dan integrasi Firebase."><title>EGIS (iOffice PLN EG) — Arsitektur Mobile</title>
+<style>
+:root{--paper:#fff;--ink:#191b20;--wash:#f3f4f6;--accent:#bd2828}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--accent);text-underline-offset:4px}a:hover{text-decoration-thickness:2px}a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:5px}.wrap{width:min(1400px,90%);margin:auto}header{display:flex;align-items:center;justify-content:space-between;padding:24px 0;gap:24px}header a{color:var(--ink);text-decoration:none}header strong{font-size:23px;letter-spacing:-1px}header nav{display:flex;gap:28px;flex-wrap:wrap}.hero{padding:45px 0 30px}.hero h1{font-size:clamp(36px,4.9vw,70px);line-height:1.05;letter-spacing:-.045em;margin:0 0 24px;max-width:1100px}.hero p{font-size:21px;max-width:800px;margin:0}.actions{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:28px}.primary{background:var(--accent);color:white;padding:12px 22px;text-decoration:none;font-weight:650}.stage{background:var(--wash);margin-top:35px;padding:14px}.stage iframe{display:block;width:100%;height:880px;border:0;background:white}.stage-foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:12px 5px;font-size:15px}.layout{display:grid;grid-template-columns:245px minmax(0,1fr);gap:65px;padding:95px 0 110px}aside{align-self:start;position:sticky;top:30px;font-size:15px}aside h2{font-size:19px;margin:0 0 20px}aside a{display:block;color:var(--ink);text-decoration:none;padding:8px 0;line-height:1.5}aside a[aria-current=true]{color:var(--accent);font-weight:700}article{min-width:0;max-width:940px}article>p:first-child{background:var(--wash);padding:22px;margin-top:0}article h2{font-size:34px;letter-spacing:-.03em;line-height:1.2;margin:90px 0 28px}article h3{font-size:23px;line-height:1.4;margin:38px 0 16px}article p,article li{overflow-wrap:anywhere}article li{margin:8px 0}article code{font-size:.88em;background:var(--wash);padding:2px 5px}article pre{background:var(--wash);padding:23px;overflow:auto;font-size:15px;line-height:1.7}article pre code{padding:0;background:none}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:15px;margin:28px 0}th,td{padding:15px;text-align:left;vertical-align:top}thead{background:var(--ink);color:white}tbody tr:nth-child(odd){background:var(--wash)}footer{background:var(--ink);color:white;padding:48px 0}footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}footer p{margin:0}footer a{color:white}.skip{position:absolute;top:-100px}.skip:focus{top:8px;background:white;padding:12px;z-index:2}@media(min-width:1600px){.stage iframe{height:1000px}}@media(max-width:900px){.layout{grid-template-columns:1fr;gap:35px;padding-top:55px}aside{position:static;background:var(--wash);padding:24px}aside a{padding:9px 0}header{align-items:flex-start}header nav{gap:16px;font-size:15px}.stage iframe{height:850px}.hero{padding-top:30px}article h2{font-size:29px;margin-top:60px}}@media(max-width:540px){body{font-size:16px}.wrap{width:90%}header{flex-direction:column;gap:12px}.hero p{font-size:18px}.stage{margin-left:-3%;margin-right:-3%;padding:4px}.stage iframe{height:760px}.layout{padding-bottom:60px}article pre{padding:16px;font-size:13px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{header,aside,.actions,.stage,footer{display:none}.layout{display:block;padding:0}.wrap{width:100%}article{max-width:none}article h2{break-after:avoid;margin-top:35px}article pre{white-space:pre-wrap}a{color:inherit}}
+
+.skip{left:24px}article p{max-width:70ch}article pre{white-space:pre-wrap;overflow-wrap:anywhere}th,td{overflow-wrap:anywhere}header a:hover,.actions a:hover{opacity:.78}aside a:hover{color:var(--accent)}@media(max-width:900px){table{table-layout:fixed}th,td{padding:10px;font-size:14px}article code{overflow-wrap:anywhere;word-break:break-word}}
+</style></head><body><a class="skip" href="#panduan">Lewati ke dokumentasi</a><div class="wrap"><header><a href="../index.html"><strong>iOffice / Dokumentasi</strong></a><nav aria-label="Navigasi utama"><a href="#diagram">Diagram</a><a href="#panduan">Arsitektur</a><a href="../index.html">← Semua panduan</a></nav></header><main><section class="hero"><h1>EGIS (iOffice PLN EG) — Arsitektur Mobile</h1><p>Clean Architecture berbasis Flutter: layer presentasi, domain, dan data, autentikasi JWT ke Odoo, hardening device, dan integrasi Firebase.</p><div class="actions"><a class="primary" href="#panduan">Baca arsitektur</a><a href="diagram.html">Jelajahi diagram layar penuh ↗</a></div></section><section class="stage" id="diagram" aria-label="Diagram arsitektur mobile"><iframe src="diagram.html" title="Diagram interaktif Archify: arsitektur mobile EGIS (iOffice PLN EG)" loading="eager"></iframe><div class="stage-foot"><span>Clean Architecture · Flutter · 23 Oktober 2026</span><a href="diagram.html">Buka viewer lengkap ↗</a></div></section><div class="layout" id="panduan"><aside aria-label="Daftar isi"><h2>Dalam panduan ini</h2><a href="#1-overview">1. Overview</a><a href="#2-layer-arsitektur">2. Layer arsitektur (Clean Architecture)</a><a href="#3-state-management-dan-di">3. State management &amp; DI</a><a href="#4-jaringan-dan-dio-client">4. Jaringan &amp; Dio Client</a><a href="#5-autentikasi">5. Autentikasi</a><a href="#6-penyimpanan-lokal">6. Penyimpanan lokal</a><a href="#7-firebase-dan-notifikasi">7. Firebase &amp; notifikasi</a><a href="#8-modul-fitur">8. Modul &amp; fitur</a><a href="#9-environment-dan-entrypoint">9. Environment &amp; entrypoint</a></aside><article><p>Status: dokumentasi arsitektur berdasarkan source code aplikasi.
+Tanggal: 23 Oktober 2026.</p>
+
+<h2 id="1-overview">1. Overview</h2>
+<p><strong>EGIS (iOffice PLN EG)</strong> adalah aplikasi mobile enterprise untuk PLN Enjiniring (PLN EG) berbasis Flutter, mencakup absensi (face detection + geofencing), persuratan/disposisi, pengajuan operasional kerja (iMeeting, iTransport, iSPPD), dan manajemen kepegawaian (SK, cuti, slip gaji). EGIS adalah hasil rombak dari project <strong>BAG</strong> sebelumnya — fiturnya kurang lebih sama, sehingga sebagian kode lama (termasuk modul enkripsi) masih terbawa meski belum dipakai di flow saat ini (lihat <a href="#5-autentikasi">§5</a>).</p>
+<p>Platform: Android &amp; iOS. Flutter SDK <code>^3.8.0</code>. Package aplikasi: <code>EGIS</code>.</p>
+
+<h2 id="2-layer-arsitektur">2. Layer arsitektur (Clean Architecture)</h2>
+<p>Struktur <code>lib/</code> dipisah modular per tanggung jawab:</p>
+<pre><code class="language-text">lib/
+├── config/        # DI (GetIt), environment/flavor, router, theme
+├── core/          # network (Dio + interceptor), security, storage, services
+├── data/          # datasources (remote/local), models, mappers, repository impl
+├── domain/        # entities, repository interface, use case (pure Dart)
+└── presentation/  # bloc/cubit, screens, widgets, controllers, dialogs
+</code></pre>
+<p>Alur data satu arah: <code>UI/Screen → BLoC Event → UseCase → Repository Interface → Repository Impl → DataSource (Remote/Local)</code>. Setiap use case mengembalikan <code>Future&lt;Either&lt;Failure, T&gt;&gt;</code> (<code>dartz</code>); kegagalan ditangkap sebagai subtype <code>Failure</code> (<code>ServerFailure</code>, <code>CacheFailure</code>, <code>NetworkFailure</code>).</p>
+<p>Repository implementation memilih antara remote data source (API) dan local data source (cache), sehingga domain layer tidak tahu sumber datanya dari mana — ini yang membuat use case tetap pure Dart dan mudah diuji.</p>
+
+<h2 id="3-state-management-dan-di">3. State management &amp; DI</h2>
+<ul>
+<li><strong>State management</strong>: <code>flutter_bloc</code> (BLoC/Cubit per fitur — ada 40+ BLoC di <code>presentation/bloc/</code>, satu per use case screen: attendance, imeeting, isppd, itransport, salary, sk_kepegawaian, dll).</li>
+<li><strong>Dependency Injection</strong>: <code>get_it</code> — satu service locator global (<code>config/di/injector.dart</code>) mendaftarkan DioClient, API factory, data source, repository, dan use case untuk setiap fitur.</li>
+<li><strong>Functional error handling</strong>: <code>dartz</code> (<code>Either&lt;Failure, Success&gt;</code>) dipakai konsisten di semua use case &amp; repository.</li>
+</ul>
+
+<h2 id="4-jaringan-dan-dio-client">4. Jaringan &amp; Dio Client</h2>
+<p>Semua request HTTP lewat satu <code>DioClient</code> (<code>core/network/dio_client.dart</code>) dengan API module per fitur di <code>core/network/api/</code> (auth, attendance, imeeting, isppd, itransport, salary, sk_kepegawaian, dashboard, notification, approval, dll).</p>
+<p>Interceptor Dio menangani:</p>
+<ol>
+<li><strong>Auto-attach token</strong>: membaca <code>auth_token</code>/<code>sso_jwt_token</code> dari SharedPreferences, mengecualikan endpoint publik (login, checkpass, checkotp, forgot-password, dll).</li>
+<li><strong>Auto-refresh JWT</strong>: jika token mendekati/sudah expired (<code>exp</code> klaim JWT), request di-pause untuk refresh token lebih dulu (dengan <code>Completer</code> untuk mencegah refresh ganda saat request paralel).</li>
+<li><strong>Auto-logout</strong>: jika respons 401/"token expired"/"session expired" dan refresh gagal, aplikasi membersihkan sesi lokal dan navigasi paksa ke halaman login (route <code>loginsso</code> — nama lama dari BAG, isinya login email/password biasa).</li>
+<li><strong>Observability</strong>: integrasi <code>alice</code>/<code>talker_flutter</code> untuk inspeksi request/response saat development, plus pelaporan error API ke Firestore (<code>DebugReportingService</code>) untuk debugging jarak jauh.</li>
+</ol>
+
+<h2 id="5-autentikasi">5. Autentikasi</h2>
+<p>Login saat ini <strong>email/password polos</strong> ke Odoo — <code>POST /api/v1/auth/login</code> (<code>AuthApi.loginOdoo</code>), tanpa SSO Microsoft, tanpa enkripsi payload, tanpa MFA/TOTP. Setiap login mengirim <code>device_id</code>, <code>device_name</code>, <code>platform</code>, dan <code>fcm_token</code> untuk keperluan push notification, bukan untuk validasi sesi multi-device.</p>
+<ul>
+<li><strong>Token</strong>: access token JWT + refresh token. <code>DioClient</code> otomatis refresh token yang mendekati/sudah expired dan auto-logout saat server membalas 401/"session expired" (lihat <a href="#4-jaringan-dan-dio-client">§4</a>).</li>
+<li><strong>Lupa password</strong>: alur <code>forgot-password → verify-otp → reset-password</code> via email, bukan TOTP authenticator.</li>
+<li><strong>Device hardening</strong>: deteksi jailbreak/root (<code>flutter_jailbreak_detection</code>), biometrik lokal (<code>local_auth</code>), dan deteksi fake/mock GPS (<code>detect_fake_location</code>) untuk melindungi absensi — ini aktif dipakai.</li>
+<li><strong>Kode peninggalan BAG (belum dipakai)</strong>: <code>EncryptionService</code> (RSA + AES-256-CBC, <code>core/services/encryption_service.dart</code>) di-inject ke <code>AuthRemoteDataSourceImpl</code> tapi parameternya dibuang begitu saja (<code>: _authApi = authApi;</code>) — tidak ada method enkripsinya yang pernah dipanggil di flow login. Interceptor Dio juga masih menyisakan path <code>/svc-mobile/auth/me</code> &amp; <code>/svc-mobile/totp</code> dan key <code>sso_jwt_token</code> dari desain SSO/MFA BAG yang lama, tapi tidak ada screen/BLoC yang memicunya di EGIS. Kalau SSO Microsoft + MFA mau diaktifkan lagi, rancangannya ada di <a href="../microsoft-sso-guide/index.html">panduan SSO Microsoft 365 + MFA</a> — tapi itu masih rancangan terpisah, bukan deskripsi kode EGIS saat ini.</li>
+</ul>
+
+<h2 id="6-penyimpanan-lokal">6. Penyimpanan lokal</h2>
+<p>Tiga mekanisme penyimpanan sesuai sensitivitas data:</p>
+<table>
+<thead><tr><th>Storage</th><th>Dipakai untuk</th></tr></thead>
+<tbody>
+<tr><td><code>shared_preferences</code></td><td>Token, flag onboarding, data ringan non-sensitif</td></tr>
+<tr><td><code>hive_flutter</code></td><td>Cache data terstruktur (daftar, riwayat) untuk akses offline/cache-first</td></tr>
+<tr><td><code>flutter_secure_storage</code></td><td>Kredensial dan secret yang butuh enkripsi native (Keychain/Keystore)</td></tr>
+</tbody>
+</table>
+
+<h2 id="7-firebase-dan-notifikasi">7. Firebase &amp; notifikasi</h2>
+<ul>
+<li><strong>FCM</strong> (<code>firebase_messaging</code> + <code>flutter_local_notifications</code>) untuk push notification, dengan handler foreground (<code>FcmService</code>) dan navigasi berbasis payload (<code>FcmNavigationHandler</code>).</li>
+<li><strong>Crashlytics</strong>: menangkap fatal error framework dan error async yang tidak tertangani.</li>
+<li><strong>Remote Config</strong>: fetch konfigurasi dengan fallback lokal saat app start.</li>
+<li><strong>Performance &amp; Firestore</strong>: monitoring performa dan (secara terbatas) pelaporan debug token/error API.</li>
+</ul>
+
+<h2 id="8-modul-fitur">8. Modul &amp; fitur</h2>
+<table>
+<thead><tr><th>Area</th><th>Fitur</th></tr></thead>
+<tbody>
+<tr><td>Autentikasi</td><td>Login email/password ke Odoo, JWT auto-refresh, reset password via OTP email</td></tr>
+<tr><td>Absensi</td><td>Presensi selfie (<code>google_mlkit_face_detection</code>), geofencing (<code>geolocator</code>), anti fake-GPS</td></tr>
+<tr><td>Operasional</td><td>iTransport (peminjaman kendaraan), iMeeting (booking ruang rapat), iSPPD (perjalanan dinas &amp; reimburse), WFA schedule</td></tr>
+<tr><td>Kepegawaian</td><td>SK kepegawaian, cuti, slip gaji, CV &amp; data keluarga, profil driver/TAD</td></tr>
+<tr><td>Surat &amp; Inbox</td><td>Tracking naskah dinas, disposisi, approval surat masuk/keluar</td></tr>
+</tbody>
+</table>
+
+<h2 id="9-environment-dan-entrypoint">9. Environment &amp; entrypoint</h2>
+<table>
+<thead><tr><th>Environment</th><th>Entrypoint</th><th>Env file</th></tr></thead>
+<tbody>
+<tr><td>Development</td><td><code>lib/main.dart</code></td><td><code>.env.development</code></td></tr>
+<tr><td>QA / Staging</td><td><code>lib/main_qa.dart</code></td><td><code>.env.qa</code></td></tr>
+<tr><td>Production</td><td><code>lib/main_production.dart</code></td><td><code>.env.production</code></td></tr>
+</tbody>
+</table>
+<p>Code push/OTA lewat <code>shorebird_code_push</code>, dengan prompt update paksa via <code>in_app_update</code> (Android) dan <code>upgrader</code>.</p>
+
+</article></div></main><footer><div class="wrap"><p>iOffice — Internal documentation</p><p><a href="../index.html">← Semua panduan</a></p></div></footer></div></body></html>
