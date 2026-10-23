@@ -1,0 +1,10 @@
+{
+  "diagram_type": "sequence",
+  "output": "diagram.html",
+  "specification_sha256": "c328ef3a0a458cf2231ebee7bc0123d2c12d240e6b2be1a012569468dd99de34",
+  "artifact_sha256": "f7d169045e45f86f06cd6d0809d7a06f42e458ba2f6c6bee1dd437ea4259055f",
+  "validation": "9/9 showcase, 0 errors, 0 warnings",
+  "browser_evidence": "passed",
+  "visual_review": "passed",
+  "correction_rounds": 0
+}

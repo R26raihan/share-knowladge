@@ -1,0 +1,2050 @@
+{
+ "url": "http://127.0.0.1:8769",
+ "at": "2026-10-23T04:14:16.422Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 12,
+   "filled": [
+    0.54,
+    0.64,
+    0.34,
+    0.3,
+    0.33,
+    0.4,
+    0.36,
+    0.52,
+    0.34,
+    0.35,
+    0.49,
+    0.47
+   ],
+   "motion": {
+    "elements": 0,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 12773,
+     "screens": 14.2,
+     "words": 2096,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "SSO Microsoft 365 + MFA",
+     "words": 5,
+     "chars": 23,
+     "lines": 1,
+     "size": 70,
+     "vw": 4.9,
+     "font": "-apple-system",
+     "weight": 700,
+     "tracking": -0.045,
+     "leading": 1.05,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.76,
+     "top": 133,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "SSO Microsoft 365 + MFA",
+     "words": 5,
+     "lines": 1,
+     "size": 70,
+     "font": "-apple-system"
+    },
+    "headings": [
+     {
+      "text": "SSO Microsoft 365 + MFA",
+      "words": 5,
+      "chars": 23,
+      "lines": 1,
+      "size": 70,
+      "vw": 4.9,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.045,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.76,
+      "top": 133,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "1. Keputusan implementasi",
+      "words": 3,
+      "chars": 25,
+      "lines": 1,
+      "size": 34,
+      "vw": 2.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.65,
+      "top": 1698,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "2. Kondisi aplikasi saat ini",
+      "words": 5,
+      "chars": 28,
+      "lines": 1,
+      "size": 34,
+      "vw": 2.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.65,
+      "top": 2324,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "3. Konfigurasi Microsoft Entra ID",
+      "words": 5,
+      "chars": 33,
+      "lines": 1,
+      "size": 34,
+      "vw": 2.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.65,
+      "top": 2890,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "4. Backend Odoo",
+      "words": 3,
+      "chars": 15,
+      "lines": 1,
+      "size": 34,
+      "vw": 2.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.65,
+      "top": 4807,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "5. Integrasi mobile Flutter",
+      "words": 4,
+      "chars": 27,
+      "lines": 1,
+      "size": 34,
+      "vw": 2.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.65,
+      "top": 7805,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "6. Flow utama",
+      "words": 3,
+      "chars": 13,
+      "lines": 1,
+      "size": 34,
+      "vw": 2.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.65,
+      "top": 9825,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "7. Refresh, logout, dan kegagalan",
+      "words": 5,
+      "chars": 33,
+      "lines": 1,
+      "size": 34,
+      "vw": 2.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.65,
+      "top": 10280,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "8. Urutan pengerjaan dan kriteria selesai",
+      "words": 6,
+      "chars": 41,
+      "lines": 1,
+      "size": 34,
+      "vw": 2.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.65,
+      "top": 10904,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "9. Data yang perlu diisi sebelum implementasi",
+      "words": 7,
+      "chars": 45,
+      "lines": 1,
+      "size": 34,
+      "vw": 2.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.65,
+      "top": 11964,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 10,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 5,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.83,
+       "mono": false
+      },
+      {
+       "family": "monospace",
+       "share": 0.17,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      13,
+      15,
+      17,
+      19,
+      21,
+      23,
+      34,
+      70
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 17,
+      "leading": 1.75,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 15.7
+     },
+     "measureChars": 88,
+     "max": {
+      "size": 70,
+      "vw": 4.9,
+      "font": "-apple-system",
+      "text": "SSO Microsoft 365 + MFA"
+     },
+     "monoShare": 0.17,
+     "monoProseShare": 0,
+     "monoFamilies": [
+      "monospace"
+     ],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#f3f4f6",
+       "top": 451,
+       "hsl": {
+        "h": 220,
+        "s": 0.14,
+        "l": 0.96
+       }
+      },
+      {
+       "color": "#ffffff",
+       "top": 465,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#191b20",
+       "share": 0.96
+      },
+      {
+       "color": "#bd2828",
+       "share": 0.02
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#bd2828",
+      "hsl": {
+       "h": 0,
+       "s": 0.65,
+       "l": 0.45
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 1,
+     "inHero": 1,
+     "radius": 0,
+     "height": 54,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Baca panduan implementasi"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "iframe",
+      "ratio": 0.43
+     }
+    ],
+    "nav": {
+     "links": 4,
+     "fixed": false,
+     "height": 88,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 12773,
+    "margins": {
+     "left": 72,
+     "right": 123
+    },
+    "sections": [
+     {
+      "sel": "div.wrap",
+      "tag": "div",
+      "top": 0,
+      "height": 12618,
+      "words": 2466,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "SSO Microsoft 365 + MFA",
+       "size": 70,
+       "tag": "h1"
+      },
+      "left": 72,
+      "right": 72,
+      "textLeft": 72,
+      "textRight": 72,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer",
+      "tag": "footer",
+      "top": 12618,
+      "height": 156,
+      "words": 15,
+      "media": 0,
+      "middle": 642,
+      "heading": null,
+      "left": 72,
+      "right": 72,
+      "textLeft": 72,
+      "textRight": 72,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "SSO Microsoft 365 + MFA",
+      "size": 70,
+      "top": 133,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 382,
+      "n": 41
+     },
+     {
+      "x": 72,
+      "n": 3
+     },
+     {
+      "x": 404,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 45,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.14,
+    "voidBox": {
+     "x": 840,
+     "y": 120,
+     "w": 600,
+     "h": 300
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 12,
+   "filled": [
+    0.67,
+    0.73,
+    0.65,
+    0.43,
+    0.62,
+    0.38,
+    0.68,
+    0.59,
+    0.62,
+    0.53,
+    0.46,
+    0.58
+   ],
+   "motion": {
+    "elements": 0,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 13762,
+     "screens": 13.4,
+     "words": 2096,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "SSO Microsoft 365 + MFA",
+     "words": 5,
+     "chars": 23,
+     "lines": 1,
+     "size": 37.6,
+     "vw": 4.9,
+     "font": "-apple-system",
+     "weight": 700,
+     "tracking": -0.045,
+     "leading": 1.05,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.9,
+     "top": 118,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "SSO Microsoft 365 + MFA",
+     "words": 5,
+     "lines": 1,
+     "size": 37.6,
+     "font": "-apple-system"
+    },
+    "headings": [
+     {
+      "text": "SSO Microsoft 365 + MFA",
+      "words": 5,
+      "chars": 23,
+      "lines": 1,
+      "size": 37.6,
+      "vw": 4.9,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.045,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 118,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "1. Keputusan implementasi",
+      "words": 3,
+      "chars": 25,
+      "lines": 1,
+      "size": 29,
+      "vw": 3.8,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 2050,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "2. Kondisi aplikasi saat ini",
+      "words": 5,
+      "chars": 28,
+      "lines": 1,
+      "size": 29,
+      "vw": 3.8,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 2640,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "3. Konfigurasi Microsoft Entra ID",
+      "words": 5,
+      "chars": 33,
+      "lines": 1,
+      "size": 29,
+      "vw": 3.8,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 3170,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "4. Backend Odoo",
+      "words": 3,
+      "chars": 15,
+      "lines": 1,
+      "size": 29,
+      "vw": 3.8,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 5318,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "5. Integrasi mobile Flutter",
+      "words": 4,
+      "chars": 27,
+      "lines": 1,
+      "size": 29,
+      "vw": 3.8,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 8438,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "6. Flow utama",
+      "words": 3,
+      "chars": 13,
+      "lines": 1,
+      "size": 29,
+      "vw": 3.8,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 10429,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "7. Refresh, logout, dan kegagalan",
+      "words": 5,
+      "chars": 33,
+      "lines": 1,
+      "size": 29,
+      "vw": 3.8,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 10849,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "8. Urutan pengerjaan dan kriteria selesai",
+      "words": 6,
+      "chars": 41,
+      "lines": 1,
+      "size": 29,
+      "vw": 3.8,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 11555,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "9. Data yang perlu diisi sebelum implementasi",
+      "words": 7,
+      "chars": 45,
+      "lines": 1,
+      "size": 29,
+      "vw": 3.8,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 12958,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 10,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 5,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.83,
+       "mono": false
+      },
+      {
+       "family": "monospace",
+       "share": 0.17,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      12,
+      13,
+      14,
+      15,
+      17,
+      19,
+      21,
+      23,
+      29,
+      38
+     ],
+     "sizeCount": 10,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 17,
+      "leading": 1.75,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 15.7
+     },
+     "measureChars": 81,
+     "max": {
+      "size": 37.6,
+      "vw": 4.9,
+      "font": "-apple-system",
+      "text": "SSO Microsoft 365 + MFA"
+     },
+     "monoShare": 0.17,
+     "monoProseShare": 0,
+     "monoFamilies": [
+      "monospace"
+     ],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#f3f4f6",
+       "top": 402,
+       "hsl": {
+        "h": 220,
+        "s": 0.14,
+        "l": 0.96
+       }
+      },
+      {
+       "color": "#ffffff",
+       "top": 416,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#191b20",
+       "share": 0.96
+      },
+      {
+       "color": "#bd2828",
+       "share": 0.02
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#bd2828",
+      "hsl": {
+       "h": 0,
+       "s": 0.65,
+       "l": 0.45
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 1,
+     "inHero": 1,
+     "radius": 0,
+     "height": 54,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Baca panduan implementasi"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 8,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 1886
+      },
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 11691
+      }
+     ]
+    },
+    "heroMedia": [
+     {
+      "type": "iframe",
+      "ratio": 0.51
+     }
+    ],
+    "nav": {
+     "links": 4,
+     "fixed": false,
+     "height": 88,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 13762,
+    "margins": {
+     "left": 38,
+     "right": 41
+    },
+    "sections": [
+     {
+      "sel": "div.wrap",
+      "tag": "div",
+      "top": 0,
+      "height": 13606,
+      "words": 2466,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "SSO Microsoft 365 + MFA",
+       "size": 38,
+       "tag": "h1"
+      },
+      "left": 38,
+      "right": 38,
+      "textLeft": 38,
+      "textRight": 38,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer",
+      "tag": "footer",
+      "top": 13606,
+      "height": 156,
+      "words": 15,
+      "media": 0,
+      "middle": 37,
+      "heading": null,
+      "left": 38,
+      "right": 38,
+      "textLeft": 38,
+      "textRight": 38,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "SSO Microsoft 365 + MFA",
+      "size": 38,
+      "top": 118,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 38,
+      "n": 43
+     },
+     {
+      "x": 60,
+      "n": 2
+     }
+    ],
+    "leftBlocks": 45,
+    "bodySize": 17,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 12,
+   "filled": [
+    0.6,
+    0.88,
+    0.75,
+    0.65,
+    0.41,
+    0.64,
+    0.56,
+    0.52,
+    0.44,
+    0.59,
+    0.53,
+    0.58
+   ],
+   "motion": {
+    "elements": 0,
+    "css": 0,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 18941,
+     "screens": 22.4,
+     "words": 2096,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "SSO Microsoft 365 + MFA",
+     "words": 5,
+     "chars": 23,
+     "lines": 2,
+     "size": 36,
+     "vw": 9.2,
+     "font": "-apple-system",
+     "weight": 700,
+     "tracking": -0.045,
+     "leading": 1.05,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.9,
+     "top": 157,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "SSO Microsoft 365 + MFA",
+     "words": 5,
+     "lines": 2,
+     "size": 36,
+     "font": "-apple-system"
+    },
+    "headings": [
+     {
+      "text": "iOffice / Dokumentasi",
+      "words": 3,
+      "chars": 21,
+      "lines": 1,
+      "size": 23,
+      "vw": 5.9,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.043,
+      "leading": 1.75,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.54,
+      "top": 24,
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "SSO Microsoft 365 + MFA",
+      "words": 5,
+      "chars": 23,
+      "lines": 2,
+      "size": 36,
+      "vw": 9.2,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.045,
+      "leading": 1.05,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 157,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "1. Keputusan implementasi",
+      "words": 3,
+      "chars": 25,
+      "lines": 1,
+      "size": 29,
+      "vw": 7.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 2201,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "2. Kondisi aplikasi saat ini",
+      "words": 5,
+      "chars": 28,
+      "lines": 1,
+      "size": 29,
+      "vw": 7.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 3099,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "3. Konfigurasi Microsoft Entra ID",
+      "words": 5,
+      "chars": 33,
+      "lines": 2,
+      "size": 29,
+      "vw": 7.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 3759,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "A. Daftarkan resource API Odoo",
+      "words": 5,
+      "chars": 30,
+      "lines": 1,
+      "size": 23,
+      "vw": 5.9,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.4,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 3867,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "B. Daftarkan aplikasi mobile",
+      "words": 4,
+      "chars": 28,
+      "lines": 1,
+      "size": 23,
+      "vw": 5.9,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.4,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 4633,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "C. Wajibkan MFA",
+      "words": 3,
+      "chars": 15,
+      "lines": 1,
+      "size": 23,
+      "vw": 5.9,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.4,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 5915,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "4. Backend Odoo",
+      "words": 3,
+      "chars": 15,
+      "lines": 1,
+      "size": 29,
+      "vw": 7.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 7055,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "A. Konfigurasi server",
+      "words": 3,
+      "chars": 21,
+      "lines": 1,
+      "size": 23,
+      "vw": 5.9,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.4,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 7128,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "B. Pemetaan identitas",
+      "words": 3,
+      "chars": 21,
+      "lines": 1,
+      "size": 23,
+      "vw": 5.9,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.4,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 8083,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "C. Endpoint pertukaran sesi",
+      "words": 4,
+      "chars": 27,
+      "lines": 1,
+      "size": 23,
+      "vw": 5.9,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.4,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 8422,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "D. Batas sesi dan MFA",
+      "words": 5,
+      "chars": 21,
+      "lines": 1,
+      "size": 23,
+      "vw": 5.9,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.4,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 10468,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "5. Integrasi mobile Flutter",
+      "words": 4,
+      "chars": 27,
+      "lines": 1,
+      "size": 29,
+      "vw": 7.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 11197,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "A. Konfigurasi aplikasi",
+      "words": 3,
+      "chars": 23,
+      "lines": 1,
+      "size": 23,
+      "vw": 5.9,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.4,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 11269,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "B. Android dan iOS",
+      "words": 4,
+      "chars": 18,
+      "lines": 1,
+      "size": 23,
+      "vw": 5.9,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.4,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 11882,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "C. Perubahan minimum di repository",
+      "words": 5,
+      "chars": 34,
+      "lines": 2,
+      "size": 23,
+      "vw": 5.9,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.4,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 12377,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "6. Flow utama",
+      "words": 3,
+      "chars": 13,
+      "lines": 1,
+      "size": 29,
+      "vw": 7.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 14181,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "7. Refresh, logout, dan kegagalan",
+      "words": 5,
+      "chars": 33,
+      "lines": 2,
+      "size": 29,
+      "vw": 7.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 14706,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "8. Urutan pengerjaan dan kriteria selesai",
+      "words": 6,
+      "chars": 41,
+      "lines": 2,
+      "size": 29,
+      "vw": 7.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 15808,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "9. Data yang perlu diisi sebelum implementasi",
+      "words": 7,
+      "chars": 45,
+      "lines": 2,
+      "size": 29,
+      "vw": 7.4,
+      "font": "-apple-system",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 18054,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 21,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 4,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "-apple-system",
+       "share": 0.83,
+       "mono": false
+      },
+      {
+       "family": "monospace",
+       "share": 0.17,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      11,
+      12,
+      14,
+      15,
+      16,
+      18,
+      19,
+      23,
+      29,
+      36
+     ],
+     "sizeCount": 10,
+     "notLoaded": [],
+     "body": {
+      "font": "-apple-system",
+      "size": 16,
+      "leading": 1.75,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 15.7
+     },
+     "measureChars": 44,
+     "max": {
+      "size": 36,
+      "vw": 9.2,
+      "font": "-apple-system",
+      "text": "SSO Microsoft 365 + MFA"
+     },
+     "monoShare": 0.17,
+     "monoProseShare": 0,
+     "monoFamilies": [
+      "monospace"
+     ],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#f3f4f6",
+       "top": 548,
+       "hsl": {
+        "h": 220,
+        "s": 0.14,
+        "l": 0.96
+       }
+      },
+      {
+       "color": "#ffffff",
+       "top": 552,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#191b20",
+       "share": 0.97
+      },
+      {
+       "color": "#bd2828",
+       "share": 0.02
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#bd2828",
+      "hsl": {
+       "h": 0,
+       "s": 0.65,
+       "l": 0.45
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 1,
+     "inHero": 1,
+     "radius": 0,
+     "height": 52,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Baca panduan implementasi"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "iframe",
+      "ratio": 0.32
+     }
+    ],
+    "nav": {
+     "links": 4,
+     "fixed": false,
+     "height": 127,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 18941,
+    "margins": {
+     "left": 20,
+     "right": 20
+    },
+    "sections": [
+     {
+      "sel": "header",
+      "tag": "header",
+      "top": 0,
+      "height": 127,
+      "words": 8,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "iOffice / Dokumentasi",
+       "size": 23,
+       "tag": "strong"
+      },
+      "left": 20,
+      "right": 54,
+      "textLeft": 20,
+      "textRight": 54,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.hero",
+      "tag": "section",
+      "top": 127,
+      "height": 386,
+      "words": 30,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "SSO Microsoft 365 + MFA",
+       "size": 36,
+       "tag": "h1"
+      },
+      "left": 20,
+      "right": 25,
+      "textLeft": 20,
+      "textRight": 25,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#diagram.stage",
+      "tag": "section",
+      "top": 548,
+      "height": 887,
+      "words": 14,
+      "media": 1,
+      "middle": 0,
+      "heading": null,
+      "left": 13,
+      "right": 13,
+      "textLeft": 18,
+      "textRight": 20,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "div#panduan.layout",
+      "tag": "div",
+      "top": 1434,
+      "height": 17269,
+      "words": 2414,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "1. Keputusan implementasi",
+       "size": 29,
+       "tag": "h2"
+      },
+      "left": 20,
+      "right": 20,
+      "textLeft": 20,
+      "textRight": 20,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer",
+      "tag": "footer",
+      "top": 18703,
+      "height": 238,
+      "words": 15,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 20,
+      "right": 26,
+      "textLeft": 20,
+      "textRight": 26,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "SSO Microsoft 365 + MFA",
+      "size": 36,
+      "top": 157,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 20,
+      "n": 43
+     },
+     {
+      "x": 42,
+      "n": 2
+     }
+    ],
+    "leftBlocks": 45,
+    "bodySize": 16,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "FAIL",
+   "id": "few-pictures",
+   "width": 1440,
+   "message": "Only 0 picture(s) on the page (0 photographs, footage or raster images, 0 interface fragments). Drawings in SVG do not count.",
+   "fix": "Find real pictures of the subject's world with scripts/assets.mjs (photographs, archival images, maps, engravings, footage), download them to assets/ and give them room: a hero picture, one per section that has a subject, a full-width band. At least four, usually six to twelve."
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "off-centre",
+   "width": 1440,
+   "message": "The margins differ: 72px on the left, 123px on the right, at 1440px.",
+   "fix": "Put the navigation and the content on one pair of margins; check for padding on one side only, a scrollbar gutter, or a header on another inset than the page."
+  },
+  {
+   "level": "FAIL",
+   "id": "still-page",
+   "width": 1440,
+   "message": "Only 0 element(s) moved while the page loaded and scrolled.",
+   "fix": "Build the motion layer (SKILL.md step 9, references/motion.md): the signature move, an entrance for the parts of every section, feedback on every control, and one moving picture. Transform and opacity only, with a reduced-motion fallback."
+  },
+  {
+   "level": "WARN",
+   "id": "card-rows",
+   "width": 768,
+   "message": "2 rows of identical boxed cards.",
+   "fix": "Vary the composition; not every section is a card grid."
+  },
+  {
+   "level": "WARN",
+   "id": "size-count",
+   "width": 768,
+   "message": "10 different font sizes (12, 13, 14, 15, 17, 19, 21, 23, 29, 38).",
+   "fix": "A page needs about five: display, heading, lead, body, small.",
+   "alsoAt": [
+    390
+   ]
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "/tmp/ioffice-sso-qa-final/desktop-fold.jpg",
+   "pages": [
+    "/tmp/ioffice-sso-qa-final/desktop-page-01.jpg",
+    "/tmp/ioffice-sso-qa-final/desktop-page-02.jpg",
+    "/tmp/ioffice-sso-qa-final/desktop-page-03.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "/tmp/ioffice-sso-qa-final/tablet-fold.jpg",
+   "pages": [
+    "/tmp/ioffice-sso-qa-final/tablet-page-01.jpg",
+    "/tmp/ioffice-sso-qa-final/tablet-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "/tmp/ioffice-sso-qa-final/mobile-fold.jpg",
+   "pages": [
+    "/tmp/ioffice-sso-qa-final/mobile-page-01.jpg",
+    "/tmp/ioffice-sso-qa-final/mobile-page-02.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

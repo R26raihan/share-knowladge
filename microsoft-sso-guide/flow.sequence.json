@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "Alur SSO Microsoft 365 + MFA",
+    "quality_profile": "showcase",
+    "column_fit": "spread",
+    "viewBox": [
+      1200,
+      680
+    ]
+  },
+  "participants": [
+    {
+      "id": "pegawai",
+      "type": "external",
+      "label": "Pegawai"
+    },
+    {
+      "id": "mobile",
+      "type": "frontend",
+      "label": "Mobile Flutter"
+    },
+    {
+      "id": "entra",
+      "type": "security",
+      "label": "Microsoft Entra"
+    },
+    {
+      "id": "odoo",
+      "type": "backend",
+      "label": "API Odoo"
+    },
+    {
+      "id": "akun",
+      "type": "database",
+      "label": "User & sesi"
+    }
+  ],
+  "messages": [
+    {
+      "id": "langkah-1",
+      "from": "pegawai",
+      "to": "mobile",
+      "y": 170,
+      "label": "Masuk dengan Microsoft",
+      "variant": "default"
+    },
+    {
+      "id": "langkah-2",
+      "from": "mobile",
+      "to": "entra",
+      "y": 212,
+      "label": "Browser / broker: PKCE + scope API",
+      "variant": "security"
+    },
+    {
+      "id": "langkah-3",
+      "from": "entra",
+      "to": "pegawai",
+      "y": 254,
+      "label": "Login + MFA bila diperlukan",
+      "variant": "security"
+    },
+    {
+      "id": "langkah-4",
+      "from": "pegawai",
+      "to": "entra",
+      "y": 296,
+      "label": "Verifikasi identitas",
+      "variant": "default"
+    },
+    {
+      "id": "langkah-5",
+      "from": "entra",
+      "to": "mobile",
+      "y": 338,
+      "label": "Code → SDK menukar dengan token API",
+      "variant": "return"
+    },
+    {
+      "id": "langkah-6",
+      "from": "mobile",
+      "to": "odoo",
+      "y": 380,
+      "label": "POST exchange + Bearer Entra",
+      "variant": "emphasis"
+    },
+    {
+      "id": "langkah-7",
+      "from": "odoo",
+      "to": "akun",
+      "y": 422,
+      "label": "Mapping tid + oid, cek izin",
+      "variant": "security"
+    },
+    {
+      "id": "langkah-8",
+      "from": "akun",
+      "to": "odoo",
+      "y": 464,
+      "label": "User aktif dan diizinkan",
+      "variant": "return"
+    },
+    {
+      "id": "langkah-9",
+      "from": "odoo",
+      "to": "mobile",
+      "y": 506,
+      "label": "Sesi aplikasi + profil",
+      "variant": "return"
+    },
+    {
+      "id": "langkah-10",
+      "from": "mobile",
+      "to": "pegawai",
+      "y": 548,
+      "label": "Simpan aman → dashboard",
+      "variant": "return"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "MFA oleh Microsoft",
+      "items": [
+        "Challenge mengikuti kebijakan resource API."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Odoo memvalidasi",
+      "items": [
+        "Signature, tenant, audience, scope dan mapping."
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Sesi aplikasi",
+      "items": [
+        "Token Odoo disimpan aman untuk fitur bisnis."
+      ]
+    }
+  ]
+}
