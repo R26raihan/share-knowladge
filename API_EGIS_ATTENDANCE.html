@@ -22,9 +22,9 @@
       <div class="meta"><span class="pill">Flutter mobile</span><span class="pill">Auth: Bearer token</span><span class="pill">App-Source: IOFFICE_ANDROID</span></div>
     </section>
     <div class="layout">
-      <nav class="nav" aria-label="Navigasi fitur"><h2>Fitur</h2><a href="#presensi">Presensi</a><a href="#riwayat">Riwayat &amp; detail</a><a href="#koreksi">Koreksi kehadiran</a><a href="#tim">Kehadiran tim</a><a href="#lembur">Lembur &amp; FPKT</a></nav>
+      <nav class="nav" aria-label="Navigasi fitur"><h2>Fitur</h2><a href="#presensi">Presensi</a><a href="#riwayat">Riwayat &amp; detail</a><a href="#izin">Pengajuan izin</a><a href="#koreksi">Koreksi kehadiran</a><a href="#tim">Kehadiran tim</a><a href="#lembur">Lembur &amp; FPKT</a></nav>
       <main>
-        <div class="intro"><strong>Cakupan:</strong> hanya endpoint Odoo dengan prefix <code>/api/v1/</code>. Path ditulis relatif terhadap base URL environment EGIS. Endpoint lama Flutter yang tidak memakai namespace ini tidak dicantumkan di halaman ini.</div>
+        <div class="intro"><strong>Cakupan:</strong> endpoint Odoo <code>/api/v1/</code> dikelompokkan per fitur. Rute legacy hanya dicantumkan bila masih dipanggil oleh alur attendance aktif, dan diberi label khusus. Path ditulis relatif terhadap base URL environment EGIS.</div>
 
         <section class="feature" id="presensi">
           <div class="feature-head"><div><h2>Presensi harian</h2><p>Validasi lokasi, unggah foto, dan kirim proses presensi masuk/pulang.</p></div><span class="number">01</span></div>
@@ -42,8 +42,41 @@
           </tbody></table></div>
         </section>
 
+        <section class="feature" id="izin">
+          <div class="feature-head"><div><h2>Pengajuan izin sampai persetujuan</h2><p>Daftar jenis izin, membuat pengajuan, memantau daftar izin, dan memproses approval/rejection.</p></div><span class="number">03</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Parameter / kegunaan</th></tr></thead><tbody>
+            <tr><td><span class="method">GET</span></td><td><code>/api/v1/submissions/types</code></td><td>Daftar jenis izin/pengajuan yang tersedia.</td></tr>
+            <tr><td><span class="method">GET</span></td><td><code>/api/v1/submissions</code></td><td>Daftar pengajuan. Filter opsional: <code>state</code>, <code>date_from</code>, <code>date_to</code>.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/api/v1/submissions</code></td><td>Membuat pengajuan izin.</td></tr>
+            <tr><td><span class="method">GET</span></td><td><code>/api/v1/submissions/need-approval</code></td><td>Daftar pengajuan untuk approver. Filter opsional <code>tanggal</code>.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/api/v1/submissions/approval</code></td><td>Approve atau reject pengajuan oleh reviewer.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/api/v1/submissions/{id}/refuse</code></td><td>Menolak/membatalkan pengajuan melalui aksi pemohon.</td></tr>
+          </tbody></table></div>
+          <h3>Body membuat pengajuan</h3>
+          <pre class="codebox"><code>{
+  "alasan_pengajuan_code": "IZIN",
+  "tanggal_mulai": "2026-10-28",
+  "tanggal_selesai": "2026-10-28",
+  "keterangan": "Keperluan keluarga",
+  "latitude": -6.2,
+  "longitude": 106.8,
+  "location_address": "Jakarta"
+}</code></pre>
+          <h3>Body approval</h3>
+          <pre class="codebox"><code>{
+  "id_submission": 82,
+  "action": "APPROVE",
+  "keterangan_reviewer": "Disetujui"
+}</code></pre>
+          <p class="note">Untuk reject reviewer, gunakan <code>action: "REFUSE"</code>. Field lokasi bersifat opsional pada body pembuatan. Rute <code>/absensi_request/detail</code> dan <code>/absensi_request/submit</code> masih dipakai oleh layar detail approval attendance lama; keduanya legacy dan bukan alur Odoo submissions v1.</p>
+          <div class="table-wrap"><table><thead><tr><th>Method</th><th>Endpoint legacy aktif</th><th>Kegunaan</th></tr></thead><tbody>
+            <tr><td><span class="method post">POST</span></td><td><code>/absensi_request/detail</code></td><td>Memuat detail pada layar approval attendance lama; ID dikirim pada body sebagai <code>unix</code>.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/absensi_request/submit</code></td><td>Aksi approve/reject dari layar tersebut; body memakai <code>unix</code>, <code>approve</code>, dan <code>keteranganApprove</code>.</td></tr>
+          </tbody></table></div>
+        </section>
+
         <section class="feature" id="koreksi">
-          <div class="feature-head"><div><h2>Koreksi kehadiran</h2><p>Mengajukan koreksi, mengelola dokumen, dan memproses persetujuan.</p></div><span class="number">03</span></div>
+          <div class="feature-head"><div><h2>Koreksi kehadiran</h2><p>Mengajukan koreksi, mengelola dokumen, dan memproses persetujuan.</p></div><span class="number">04</span></div>
           <div class="table-wrap"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Parameter / kegunaan</th></tr></thead><tbody>
             <tr><td><span class="method">GET</span></td><td><code>/api/v1/absensi/koreksi</code></td><td>Query opsional <code>employee_id</code>, <code>tanggal</code>.</td></tr>
             <tr><td><span class="method post">POST</span></td><td><code>/api/v1/absensi/koreksi</code></td><td>Membuat pengajuan koreksi.</td></tr>
@@ -53,7 +86,7 @@
         </section>
 
         <section class="feature" id="tim">
-          <div class="feature-head"><div><h2>Kehadiran tim</h2><p>Rekap kehadiran unit dan detail presensi anggota tim.</p></div><span class="number">04</span></div>
+          <div class="feature-head"><div><h2>Kehadiran tim</h2><p>Rekap kehadiran unit dan detail presensi anggota tim.</p></div><span class="number">05</span></div>
           <div class="table-wrap"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Parameter / kegunaan</th></tr></thead><tbody>
             <tr><td><span class="method">GET</span></td><td><code>/api/v1/attendance/user</code></td><td>Ringkasan kehadiran pengguna.</td></tr>
             <tr><td><span class="method">GET</span></td><td><code>/api/v1/attendance/department/team</code></td><td>Daftar tim/unit.</td></tr>
@@ -62,7 +95,7 @@
         </section>
 
         <section class="feature" id="lembur">
-          <div class="feature-head"><div><h2>Lembur dan FPKT</h2><p>Daftar, pengajuan, detail lembur, serta unduh Formulir Perintah Kerja Tambahan.</p></div><span class="number">05</span></div>
+          <div class="feature-head"><div><h2>Lembur dan FPKT</h2><p>Daftar, pengajuan, detail lembur, serta unduh Formulir Perintah Kerja Tambahan.</p></div><span class="number">06</span></div>
           <div class="table-wrap"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Kegunaan</th></tr></thead><tbody>
             <tr><td><span class="method">GET</span></td><td><code>/api/v1/overtime/lihat</code></td><td>Daftar lembur.</td></tr>
             <tr><td><span class="method">GET</span></td><td><code>/api/v1/overtime/employee-tad/{employee_id}</code></td><td>Kuota dan daftar lembur operator TAD.</td></tr>
