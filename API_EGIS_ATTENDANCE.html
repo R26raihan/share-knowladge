@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Dokumentasi API fitur attendance EGIS per fitur: presensi, riwayat, koreksi, WFA, dan lembur.">
+  <meta name="description" content="Dokumentasi API EGIS per fitur termasuk attendance, slip gaji, dan progres cakupan menu.">
   <title>API Attendance — EGIS</title>
   <style>
     :root{color-scheme:light;--ink:#182230;--muted:#617080;--paper:#f5f7fa;--card:#fff;--line:#e1e7ee;--brand:#a9222b;--brand-soft:#fff1f1;--green:#167a59;--blue:#2368a5;--code:#17212d}
@@ -23,15 +23,15 @@
       <div class="meta"><span class="pill">Flutter mobile</span><span class="pill">Auth: Bearer token</span><span class="pill">App-Source: IOFFICE_ANDROID</span></div>
     </section>
     <div class="layout">
-      <nav class="nav" aria-label="Navigasi fitur"><h2>Fitur</h2><a href="#progress">Progres dokumentasi</a><a href="#presensi">Presensi</a><a href="#riwayat">Riwayat &amp; detail</a><a href="#izin">Pengajuan izin</a><a href="#koreksi">Koreksi kehadiran</a><a href="#tim">Kehadiran tim</a><a href="#lembur">Lembur &amp; FPKT</a></nav>
+      <nav class="nav" aria-label="Navigasi fitur"><h2>Fitur</h2><a href="#progress">Progres dokumentasi</a><a href="#gaji">Slip Gaji</a><a href="#riwayat-hidup">Riwayat Hidup</a><a href="#presensi">Presensi</a><a href="#riwayat">Riwayat &amp; detail</a><a href="#izin">Pengajuan izin</a><a href="#koreksi">Koreksi kehadiran</a><a href="#tim">Kehadiran tim</a><a href="#lembur">Lembur &amp; FPKT</a></nav>
       <main>
         <div class="intro"><strong>Cakupan:</strong> endpoint Odoo <code>/api/v1/</code> dikelompokkan per fitur. Path ditulis relatif terhadap base URL environment EGIS.</div>
 
         <section class="feature" id="progress">
-          <div class="feature-head"><div><h2>Progres dokumentasi fitur menu</h2><p>Checklist mencakup seluruh item pada <code>MenuData.favoriteMenu</code>. Status menunjukkan cakupan dokumentasi API di halaman ini, bukan status implementasi fiturnya.</p></div><span class="number">2 selesai · 4 parsial · 10 belum</span></div>
+          <div class="feature-head"><div><h2>Progres dokumentasi fitur menu</h2><p>Checklist mencakup seluruh item pada <code>MenuData.favoriteMenu</code>. Status menunjukkan cakupan dokumentasi API di halaman ini, bukan status implementasi fiturnya.</p></div><span class="number">3 selesai · 5 parsial · 8 belum</span></div>
           <div class="progress-grid">
-            <div class="progress-item todo"><span class="progress-state" aria-label="Belum terdokumentasi">□</span><span>Riwayat Hidup<small>Belum terdokumentasi</small></span></div>
-            <div class="progress-item todo"><span class="progress-state" aria-label="Belum terdokumentasi">□</span><span>Slip Gaji<small>Belum terdokumentasi</small></span></div>
+            <div class="progress-item partial"><span class="progress-state" aria-label="Parsial">◩</span><span>Riwayat Hidup<small>UI viewer tersedia; endpoint aktif belum teridentifikasi</small></span></div>
+            <div class="progress-item done"><span class="progress-state" aria-label="Terdokumentasi">✓</span><span>Slip Gaji<small>Daftar dan unduh PDF terdokumentasi</small></span></div>
             <div class="progress-item todo"><span class="progress-state" aria-label="Belum terdokumentasi">□</span><span>SK Pegawai<small>Belum terdokumentasi</small></span></div>
             <div class="progress-item done"><span class="progress-state" aria-label="Terdokumentasi">✓</span><span>Lembur<small>Terdokumentasi</small></span></div>
             <div class="progress-item partial"><span class="progress-state" aria-label="Parsial">◩</span><span>Riwayat Kehadiran<small>Parsial — kalender/jadwal tercakup</small></span></div>
@@ -48,6 +48,19 @@
             <div class="progress-item todo"><span class="progress-state" aria-label="Belum terdokumentasi">□</span><span>i-SPPD TAD<small>Belum terdokumentasi</small></span></div>
             <div class="progress-item na"><span class="progress-state" aria-label="Bukan fitur API">—</span><span>Lainnya<small>Item navigasi, bukan fitur API tersendiri</small></span></div>
           </div>
+        </section>
+
+        <section class="feature" id="gaji">
+          <div class="feature-head"><div><h2>Slip Gaji</h2><p>Melihat daftar slip pegawai yang login dan mengunduh laporan PDF per periode.</p></div><span class="number">PAYROLL</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Parameter / kegunaan</th></tr></thead><tbody>
+            <tr><td><span class="method">GET</span></td><td><code>/api/v1/payroll/payslips</code></td><td>Daftar slip pengguna. Query opsional <code>year</code>, <code>month</code>, <code>state</code>; pagination <code>page</code> (default 1) dan <code>per_page</code> (default 20).</td></tr>
+            <tr><td><span class="method">GET</span></td><td><code>/api/v1/payroll/payslip/download</code></td><td>Unduh PDF. Query <code>month</code>, <code>year</code>, <code>format</code> (default <code>pdf</code>); response berupa bytes PDF.</td></tr>
+          </tbody></table></div>
+        </section>
+
+        <section class="feature" id="riwayat-hidup">
+          <div class="feature-head"><div><h2>Riwayat Hidup</h2><p>Layar aplikasi menampilkan dokumen resume/PDF yang diberikan sebagai file lokal atau URL.</p></div><span class="number">BELUM LENGKAP</span></div>
+          <p class="note">Belum ada endpoint aktif yang dapat didokumentasikan dari alur layar. Endpoint legacy <code>sap/cv</code> masih tercantum di konfigurasi client, tetapi tidak ditemukan pemanggil aktifnya; endpoint tersebut tidak dicatat sebagai API Odoo v1.</p>
         </section>
 
         <section class="feature" id="presensi">
