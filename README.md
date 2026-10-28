@@ -2,6 +2,7 @@
 
 ## Dokumentasi API
 
+- [API Attendance EGIS (HTML)](API_EGIS_ATTENDANCE.html)
 - [API Lembur EGIS](API_LEMBUR_EGIS.md)
 
 ## Panduan aplikasi

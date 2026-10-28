@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dokumentasi API fitur attendance EGIS per fitur: presensi, riwayat, koreksi, WFA, dan lembur.">
+  <title>API Attendance — EGIS</title>
+  <style>
+    :root{color-scheme:light;--ink:#182230;--muted:#617080;--paper:#f5f7fa;--card:#fff;--line:#e1e7ee;--brand:#a9222b;--brand-soft:#fff1f1;--green:#167a59;--blue:#2368a5;--code:#17212d}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:28px}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.65 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit}.shell{max-width:1280px;margin:auto;padding:28px 34px 80px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:2px 0 42px}.brand{font-weight:750;letter-spacing:-.03em;text-decoration:none}.brand span{color:var(--brand)}.back{font-size:13px;color:var(--muted);text-decoration:none}.hero{max-width:820px;padding:20px 0 40px}.eyebrow{font-size:12px;font-weight:750;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}h1{font-size:clamp(38px,6vw,66px);line-height:1.04;letter-spacing:-.055em;margin:12px 0 18px}.hero p{font-size:18px;color:var(--muted);margin:0;max-width:700px}.meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}.pill{border:1px solid var(--line);background:#fff;padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted)}.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;align-items:start}.nav{position:sticky;top:20px;background:var(--card);border:1px solid var(--line);padding:18px}.nav h2{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:0 0 10px}.nav a{display:block;padding:7px 8px;text-decoration:none;font-size:13px;color:#465565;border-radius:6px}.nav a:hover,.nav a:focus-visible{background:var(--brand-soft);color:var(--brand)}main{min-width:0}.intro{background:#fff;border-left:3px solid var(--brand);padding:16px 20px;margin-bottom:20px;color:#49596a}.feature{background:var(--card);border:1px solid var(--line);padding:26px 28px;margin:0 0 18px;scroll-margin-top:20px}.feature-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.feature h2{font-size:23px;line-height:1.25;letter-spacing:-.025em;margin:0 0 6px}.feature p{margin:0 0 18px;color:var(--muted)}.number{font-size:12px;font-weight:700;color:var(--brand);background:var(--brand-soft);padding:4px 9px;border-radius:999px;white-space:nowrap}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13px}th{text-align:left;color:#667586;font-size:11px;letter-spacing:.07em;text-transform:uppercase;background:#f7f9fb}th,td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}tr:last-child td{border-bottom:0}code{font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:#28394b;overflow-wrap:anywhere}.method{display:inline-block;min-width:50px;text-align:center;border-radius:4px;padding:2px 6px;font:700 10px ui-monospace,monospace;background:#e8f4ef;color:var(--green)}.method.post{background:#edf3fa;color:var(--blue)}.note{font-size:12px;color:var(--muted);margin:14px 0 0}.codebox{background:var(--code);color:#e6edf5;padding:15px 17px;overflow:auto;font:12px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}.codebox code{color:inherit}.footer{padding:28px 0;color:var(--muted);font-size:12px}.footer a{color:var(--brand)}
+    @media(max-width:820px){.shell{padding:18px 18px 54px}.layout{grid-template-columns:1fr}.nav{position:static;display:flex;gap:4px;overflow-x:auto;align-items:center;padding:10px}.nav h2{display:none}.nav a{white-space:nowrap}.feature{padding:21px 18px}.topbar{padding-bottom:24px}}
+    @media(max-width:520px){.hero{padding:12px 0 26px}.hero p{font-size:16px}.feature h2{font-size:20px}.feature-head{gap:8px}th,td{padding:9px 8px}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar"><a class="brand" href="index.html">iOffice <span>/</span> Share Knowledge</a><a class="back" href="index.html">← Semua dokumentasi</a></header>
+    <section class="hero">
+      <div class="eyebrow">EGIS · API reference</div>
+      <h1>Attendance,<br>per fitur.</h1>
+      <p>Referensi endpoint yang dipakai modul kehadiran EGIS, dikelompokkan sesuai alur kerja pengguna dari presensi sampai lembur.</p>
+      <div class="meta"><span class="pill">Flutter mobile</span><span class="pill">Auth: Bearer token</span><span class="pill">App-Source: IOFFICE_ANDROID</span></div>
+    </section>
+    <div class="layout">
+      <nav class="nav" aria-label="Navigasi fitur"><h2>Fitur</h2><a href="#presensi">Presensi</a><a href="#riwayat">Riwayat &amp; detail</a><a href="#pengajuan">Pengajuan absensi</a><a href="#koreksi">Koreksi kehadiran</a><a href="#wfa">WFA</a><a href="#tim">Kehadiran tim</a><a href="#lembur">Lembur &amp; FPKT</a></nav>
+      <main>
+        <div class="intro"><strong>Konvensi:</strong> Path ditulis relatif terhadap base URL environment EGIS. Semua endpoint memakai autentikasi sesi aplikasi kecuali layanan ditandai lain. Rincian request/response yang tidak terlihat dari client ditandai mengikuti implementasi; cocokkan schema final dengan backend.</div>
+
+        <section class="feature" id="presensi">
+          <div class="feature-head"><div><h2>Presensi harian</h2><p>Validasi lokasi, unggah foto, dan kirim proses presensi masuk/pulang.</p></div><span class="number">01</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Kegunaan / data</th></tr></thead><tbody>
+            <tr><td><span class="method post">POST</span></td><td><code>/api/v1/absensi/validasi-lokasi</code></td><td>Validasi koordinat dan lokasi sebelum presensi.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/api/v1/absensi/upload-photo</code></td><td>Unggah foto sebagai multipart field <code>photo</code>.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/api/v1/absensi/proses</code></td><td>Proses presensi Odoo dengan payload dari alur absensi.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/api/v1/absensi/simpan</code></td><td>Simpan data presensi Odoo.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/absensi/absensi_proses_v2</code></td><td>Integrasi presensi versi lama yang masih tersedia di client.</td></tr>
+          </tbody></table></div>
+          <p class="note">Payload lokasi dan presensi dikirim sebagai JSON dari client; foto dikirim sebagai multipart/form-data.</p>
+        </section>
+
+        <section class="feature" id="riwayat">
+          <div class="feature-head"><div><h2>Riwayat, kalender, dan detail kehadiran</h2><p>Memuat jadwal bulanan, rekap riwayat, dan detail satu hari untuk pengguna.</p></div><span class="number">02</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Parameter / kegunaan</th></tr></thead><tbody>
+            <tr><td><span class="method">GET</span></td><td><code>/api/v1/absensi/riwayat</code></td><td>Query opsional <code>tanggal</code>.</td></tr>
+            <tr><td><span class="method">GET</span></td><td><code>/api/v1/absensi/jadwal_bulanan/{idPegawai}</code></td><td>Query <code>bulan</code> dan <code>tahun</code>.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/absensi/absensi_daftar_detail/v4</code></td><td>Riwayat dari integrasi attendance legacy.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/absensi/absensi_daftar_detail/v3</code></td><td>Detail absensi dari integrasi legacy.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/absensi/detail_pegawai</code></td><td>Detail kehadiran harian; payload berisi identitas pegawai dan tanggal.</td></tr>
+          </tbody></table></div>
+        </section>
+
+        <section class="feature" id="pengajuan">
+          <div class="feature-head"><div><h2>Pengajuan ketidakhadiran</h2><p>Pengajuan dan pemantauan permohonan izin/ketidakhadiran.</p></div><span class="number">03</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Kegunaan / data</th></tr></thead><tbody>
+            <tr><td><span class="method post">POST</span></td><td><code>/absensi_request/simpan</code></td><td>Membuat permohonan.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/absensi_request/detail</code></td><td>Memuat detail permohonan.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/absensi_request/submit</code></td><td>Mengirim permohonan untuk diproses.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/dashboard/tidak_masuk_lihat/v2</code></td><td>Daftar/referensi ketidakhadiran.</td></tr>
+          </tbody></table></div>
+          <p class="note">Nama field dan status mengikuti payload spesifik fitur dan model backend.</p>
+        </section>
+
+        <section class="feature" id="koreksi">
+          <div class="feature-head"><div><h2>Koreksi kehadiran</h2><p>Mengajukan koreksi atau absen baru, mengelola dokumen, dan memproses persetujuan.</p></div><span class="number">04</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Parameter / kegunaan</th></tr></thead><tbody>
+            <tr><td><span class="method">GET</span></td><td><code>/api/v1/absensi/koreksi</code></td><td>Query opsional <code>employee_id</code>, <code>tanggal</code>.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/api/v1/absensi/koreksi</code></td><td>Membuat pengajuan koreksi.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/api/v1/absensi/koreksi/upload-document</code></td><td>Unggah dokumen pendukung.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/api/v1/absensi/koreksi/{id}/action/{approve|reject}</code></td><td>Persetujuan atau penolakan; reject dapat menyertakan <code>rejectedReason</code>.</td></tr>
+            <tr><td><span class="method">DELETE</span></td><td><code>/api/v1/absensi/koreksi/{id}</code></td><td>Menghapus pengajuan koreksi.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/absensi/koreksi_simpan/v1</code></td><td>Simpan koreksi pada integrasi legacy.</td></tr>
+          </tbody></table></div>
+        </section>
+
+        <section class="feature" id="wfa">
+          <div class="feature-head"><div><h2>WFA (Work From Anywhere)</h2><p>Melihat jadwal, mengajukan WFA, membuka detail, dan memberi keputusan.</p></div><span class="number">05</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Kegunaan</th></tr></thead><tbody>
+            <tr><td><span class="method post">POST</span></td><td><code>/dashboard/wfa_lihat/v2</code></td><td>Daftar/jadwal WFA.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/dashboard/wfa_permohonan/v2</code></td><td>Mengajukan permohonan WFA.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/dashboard/wfa_lihat/detail/v2</code></td><td>Detail permohonan/jadwal.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/dashboard/wfa_approval/v2</code></td><td>Memproses persetujuan WFA.</td></tr>
+          </tbody></table></div>
+          <p class="note">Endpoint WFA pada client saat ini memakai body JSON.</p>
+        </section>
+
+        <section class="feature" id="tim">
+          <div class="feature-head"><div><h2>Kehadiran tim</h2><p>Rekap kehadiran unit dan detail presensi anggota tim.</p></div><span class="number">06</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Parameter / kegunaan</th></tr></thead><tbody>
+            <tr><td><span class="method">GET</span></td><td><code>/api/v1/attendance/user</code></td><td>Ringkasan kehadiran pengguna.</td></tr>
+            <tr><td><span class="method">GET</span></td><td><code>/api/v1/attendance/department/team</code></td><td>Daftar tim/unit.</td></tr>
+            <tr><td><span class="method">GET</span></td><td><code>/api/v1/attendance/detail?idpegawai={id}[&amp;tanggal={date}]</code></td><td>Detail kehadiran anggota tim. Tanggal opsional.</td></tr>
+          </tbody></table></div>
+        </section>
+
+        <section class="feature" id="lembur">
+          <div class="feature-head"><div><h2>Lembur dan FPKT</h2><p>Daftar, pengajuan, detail lembur, serta unduh Formulir Perintah Kerja Tambahan.</p></div><span class="number">07</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Kegunaan</th></tr></thead><tbody>
+            <tr><td><span class="method">GET</span></td><td><code>/api/v1/overtime/lihat</code></td><td>Daftar lembur.</td></tr>
+            <tr><td><span class="method">GET</span></td><td><code>/api/v1/overtime/employee-tad/{employee_id}</code></td><td>Kuota dan daftar lembur operator TAD.</td></tr>
+            <tr><td><span class="method">GET</span></td><td><code>/api/v1/overtime/datapegawai</code></td><td>Data pegawai untuk form pengajuan.</td></tr>
+            <tr><td><span class="method">GET</span></td><td><code>/api/v1/overtime/detail/{overtime_id}</code></td><td>Detail pengajuan dan operator lembur.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/api/v1/overtime/simpan</code></td><td>Membuat pengajuan JSON.</td></tr>
+            <tr><td><span class="method post">POST</span></td><td><code>/api/v1/overtime/upload</code></td><td>Unggah lampiran multipart.</td></tr>
+            <tr><td><span class="method">GET</span></td><td><code>/api/v1/overtime/{overtime_id}/fpkt/download?format=pdf</code></td><td>Unduh PDF FPKT. Tombol TAD memanggil API ini; tidak menggunakan URL <code>assignment_letter</code>.</td></tr>
+            <tr><td><span class="method">GET</span></td><td><code>/api/v1/overtime/{overtime_id}/download?format=pdf</code></td><td>Endpoint download Surat Tugas yang masih didefinisikan client.</td></tr>
+          </tbody></table></div>
+          <p class="note">Backend juga mendokumentasikan bentuk <code>/api/v1/overtime/fpkt/download</code> dengan query <code>overtime_id</code> saat ID tidak tersedia pada path. Operator yang tercantum menerima lembar sendiri; parameter <code>employee_id</code> hanya untuk Manager/Koordinator/HR sesuai hak akses backend.</p>
+        </section>
+
+        <section class="feature" id="request-example">
+          <div class="feature-head"><div><h2>Header request</h2><p>Header umum yang disiapkan client EGIS oleh Dio interceptor.</p></div><span class="number">AUTH</span></div>
+          <pre class="codebox"><code>Authorization: Bearer {access_token}
+Accept: application/json
+Content-Type: application/json
+App-Source: IOFFICE_ANDROID</code></pre>
+          <p class="note">Unduhan FPKT memakai <code>Accept: application/pdf</code>. Jangan menyalin token atau URL file bertanda tangan dari log ke dokumen.</p>
+        </section>
+
+        <footer class="footer">Sumber implementasi: <code>lib/core/network/api/attendance/</code>, <code>lib/core/network/api/overtime/</code>, dan layar fitur attendance EGIS. <a href="API_LEMBUR_EGIS.md">Buka catatan API lembur versi Markdown</a>.</footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
