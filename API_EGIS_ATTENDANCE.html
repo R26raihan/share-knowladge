@@ -29,10 +29,8 @@
         <section class="feature" id="presensi">
           <div class="feature-head"><div><h2>Presensi harian</h2><p>Validasi lokasi, unggah foto, dan kirim proses presensi masuk/pulang.</p></div><span class="number">01</span></div>
           <div class="table-wrap"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Kegunaan / data</th></tr></thead><tbody>
-            <tr><td><span class="method post">POST</span></td><td><code>/api/v1/absensi/validasi-lokasi</code></td><td>Validasi koordinat dan lokasi sebelum presensi.</td></tr>
             <tr><td><span class="method post">POST</span></td><td><code>/api/v1/absensi/upload-photo</code></td><td>Unggah foto sebagai multipart field <code>photo</code>.</td></tr>
             <tr><td><span class="method post">POST</span></td><td><code>/api/v1/absensi/proses</code></td><td>Proses presensi Odoo dengan payload dari alur absensi.</td></tr>
-            <tr><td><span class="method post">POST</span></td><td><code>/api/v1/absensi/simpan</code></td><td>Simpan data presensi Odoo.</td></tr>
           </tbody></table></div>
           <p class="note">Payload lokasi dan presensi dikirim sebagai JSON dari client; foto dikirim sebagai multipart/form-data.</p>
         </section>
@@ -40,7 +38,6 @@
         <section class="feature" id="riwayat">
           <div class="feature-head"><div><h2>Riwayat, kalender, dan detail kehadiran</h2><p>Memuat jadwal bulanan, rekap riwayat, dan detail satu hari untuk pengguna.</p></div><span class="number">02</span></div>
           <div class="table-wrap"><table><thead><tr><th>Method</th><th>Endpoint</th><th>Parameter / kegunaan</th></tr></thead><tbody>
-            <tr><td><span class="method">GET</span></td><td><code>/api/v1/absensi/riwayat</code></td><td>Query opsional <code>tanggal</code>.</td></tr>
             <tr><td><span class="method">GET</span></td><td><code>/api/v1/absensi/jadwal_bulanan/{idPegawai}</code></td><td>Query <code>bulan</code> dan <code>tahun</code>.</td></tr>
           </tbody></table></div>
         </section>
@@ -52,7 +49,6 @@
             <tr><td><span class="method post">POST</span></td><td><code>/api/v1/absensi/koreksi</code></td><td>Membuat pengajuan koreksi.</td></tr>
             <tr><td><span class="method post">POST</span></td><td><code>/api/v1/absensi/koreksi/upload-document</code></td><td>Unggah dokumen pendukung.</td></tr>
             <tr><td><span class="method post">POST</span></td><td><code>/api/v1/absensi/koreksi/{id}/action/{approve|reject}</code></td><td>Persetujuan atau penolakan; reject dapat menyertakan <code>rejectedReason</code>.</td></tr>
-            <tr><td><span class="method">DELETE</span></td><td><code>/api/v1/absensi/koreksi/{id}</code></td><td>Menghapus pengajuan koreksi.</td></tr>
           </tbody></table></div>
         </section>
 
