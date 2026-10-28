@@ -8,6 +8,7 @@
   <style>
     :root{color-scheme:light;--ink:#182230;--muted:#617080;--paper:#f5f7fa;--card:#fff;--line:#e1e7ee;--brand:#a9222b;--brand-soft:#fff1f1;--green:#167a59;--blue:#2368a5;--code:#17212d}
     *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:28px}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.65 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit}.shell{max-width:1280px;margin:auto;padding:28px 34px 80px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:2px 0 42px}.brand{font-weight:750;letter-spacing:-.03em;text-decoration:none}.brand span{color:var(--brand)}.back{font-size:13px;color:var(--muted);text-decoration:none}.hero{max-width:820px;padding:20px 0 40px}.eyebrow{font-size:12px;font-weight:750;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}h1{font-size:clamp(38px,6vw,66px);line-height:1.04;letter-spacing:-.055em;margin:12px 0 18px}.hero p{font-size:18px;color:var(--muted);margin:0;max-width:700px}.meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}.pill{border:1px solid var(--line);background:#fff;padding:5px 10px;border-radius:999px;font-size:12px;color:var(--muted)}.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;align-items:start}.nav{position:sticky;top:20px;background:var(--card);border:1px solid var(--line);padding:18px}.nav h2{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:0 0 10px}.nav a{display:block;padding:7px 8px;text-decoration:none;font-size:13px;color:#465565;border-radius:6px}.nav a:hover,.nav a:focus-visible{background:var(--brand-soft);color:var(--brand)}main{min-width:0}.intro{background:#fff;border-left:3px solid var(--brand);padding:16px 20px;margin-bottom:20px;color:#49596a}.feature{background:var(--card);border:1px solid var(--line);padding:26px 28px;margin:0 0 18px;scroll-margin-top:20px}.feature-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.feature h2{font-size:23px;line-height:1.25;letter-spacing:-.025em;margin:0 0 6px}.feature p{margin:0 0 18px;color:var(--muted)}.number{font-size:12px;font-weight:700;color:var(--brand);background:var(--brand-soft);padding:4px 9px;border-radius:999px;white-space:nowrap}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13px}th{text-align:left;color:#667586;font-size:11px;letter-spacing:.07em;text-transform:uppercase;background:#f7f9fb}th,td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}tr:last-child td{border-bottom:0}code{font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:#28394b;overflow-wrap:anywhere}.method{display:inline-block;min-width:50px;text-align:center;border-radius:4px;padding:2px 6px;font:700 10px ui-monospace,monospace;background:#e8f4ef;color:var(--green)}.method.post{background:#edf3fa;color:var(--blue)}.note{font-size:12px;color:var(--muted);margin:14px 0 0}.codebox{background:var(--code);color:#e6edf5;padding:15px 17px;overflow:auto;font:12px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}.codebox code{color:inherit}.footer{padding:28px 0;color:var(--muted);font-size:12px}.footer a{color:var(--brand)}
+    .progress-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}.progress-item{display:flex;align-items:center;gap:10px;padding:9px 11px;background:#f7f9fb;border:1px solid var(--line);font-size:13px}.progress-state{width:22px;height:22px;display:inline-grid;place-items:center;border-radius:5px;font-weight:800;flex:none}.done .progress-state{background:#e8f4ef;color:var(--green)}.partial .progress-state{background:#fff5df;color:#966100}.todo .progress-state{background:#eef1f5;color:#738092}.na .progress-state{background:#f0edfa;color:#6952a3}
     @media(max-width:820px){.shell{padding:18px 18px 54px}.layout{grid-template-columns:1fr}.nav{position:static;display:flex;gap:4px;overflow-x:auto;align-items:center;padding:10px}.nav h2{display:none}.nav a{white-space:nowrap}.feature{padding:21px 18px}.topbar{padding-bottom:24px}}
     @media(max-width:520px){.hero{padding:12px 0 26px}.hero p{font-size:16px}.feature h2{font-size:20px}.feature-head{gap:8px}th,td{padding:9px 8px}}
   </style>
@@ -22,9 +23,32 @@
       <div class="meta"><span class="pill">Flutter mobile</span><span class="pill">Auth: Bearer token</span><span class="pill">App-Source: IOFFICE_ANDROID</span></div>
     </section>
     <div class="layout">
-      <nav class="nav" aria-label="Navigasi fitur"><h2>Fitur</h2><a href="#presensi">Presensi</a><a href="#riwayat">Riwayat &amp; detail</a><a href="#izin">Pengajuan izin</a><a href="#koreksi">Koreksi kehadiran</a><a href="#tim">Kehadiran tim</a><a href="#lembur">Lembur &amp; FPKT</a></nav>
+      <nav class="nav" aria-label="Navigasi fitur"><h2>Fitur</h2><a href="#progress">Progres dokumentasi</a><a href="#presensi">Presensi</a><a href="#riwayat">Riwayat &amp; detail</a><a href="#izin">Pengajuan izin</a><a href="#koreksi">Koreksi kehadiran</a><a href="#tim">Kehadiran tim</a><a href="#lembur">Lembur &amp; FPKT</a></nav>
       <main>
-        <div class="intro"><strong>Cakupan:</strong> endpoint Odoo <code>/api/v1/</code> dikelompokkan per fitur. Rute legacy hanya dicantumkan bila masih dipanggil oleh alur attendance aktif, dan diberi label khusus. Path ditulis relatif terhadap base URL environment EGIS.</div>
+        <div class="intro"><strong>Cakupan:</strong> endpoint Odoo <code>/api/v1/</code> dikelompokkan per fitur. Path ditulis relatif terhadap base URL environment EGIS.</div>
+
+        <section class="feature" id="progress">
+          <div class="feature-head"><div><h2>Progres dokumentasi fitur menu</h2><p>Checklist mencakup seluruh item pada <code>MenuData.favoriteMenu</code>. Status menunjukkan cakupan dokumentasi API di halaman ini, bukan status implementasi fiturnya.</p></div><span class="number">2 selesai · 4 parsial · 10 belum</span></div>
+          <div class="progress-grid">
+            <div class="progress-item todo"><span class="progress-state" aria-label="Belum terdokumentasi">□</span><span>Riwayat Hidup<small>Belum terdokumentasi</small></span></div>
+            <div class="progress-item todo"><span class="progress-state" aria-label="Belum terdokumentasi">□</span><span>Slip Gaji<small>Belum terdokumentasi</small></span></div>
+            <div class="progress-item todo"><span class="progress-state" aria-label="Belum terdokumentasi">□</span><span>SK Pegawai<small>Belum terdokumentasi</small></span></div>
+            <div class="progress-item done"><span class="progress-state" aria-label="Terdokumentasi">✓</span><span>Lembur<small>Terdokumentasi</small></span></div>
+            <div class="progress-item partial"><span class="progress-state" aria-label="Parsial">◩</span><span>Riwayat Kehadiran<small>Parsial — kalender/jadwal tercakup</small></span></div>
+            <div class="progress-item partial"><span class="progress-state" aria-label="Parsial">◩</span><span>Atasan<small>Parsial — API rekap tim tercakup</small></span></div>
+            <div class="progress-item partial"><span class="progress-state" aria-label="Parsial">◩</span><span>Bawahan<small>Parsial — API detail tim tercakup</small></span></div>
+            <div class="progress-item todo"><span class="progress-state" aria-label="Belum terdokumentasi">□</span><span>Data Kantor<small>Belum terdokumentasi</small></span></div>
+            <div class="progress-item done"><span class="progress-state" aria-label="Terdokumentasi">✓</span><span>Pengajuan<small>Izin sampai approval terdokumentasi</small></span></div>
+            <div class="progress-item partial"><span class="progress-state" aria-label="Parsial">◩</span><span>Persetujuan<small>Parsial — izin dan koreksi tercakup</small></span></div>
+            <div class="progress-item todo"><span class="progress-state" aria-label="Belum terdokumentasi">□</span><span>Persetujuan Admin<small>Belum terdokumentasi</small></span></div>
+            <div class="progress-item todo"><span class="progress-state" aria-label="Belum terdokumentasi">□</span><span>i-Meeting<small>Belum terdokumentasi</small></span></div>
+            <div class="progress-item todo"><span class="progress-state" aria-label="Belum terdokumentasi">□</span><span>i-Transport<small>Belum terdokumentasi</small></span></div>
+            <div class="progress-item todo"><span class="progress-state" aria-label="Belum terdokumentasi">□</span><span>ISPPD<small>Belum terdokumentasi</small></span></div>
+            <div class="progress-item todo"><span class="progress-state" aria-label="Belum terdokumentasi">□</span><span>SPPD Realisasi<small>Belum terdokumentasi</small></span></div>
+            <div class="progress-item todo"><span class="progress-state" aria-label="Belum terdokumentasi">□</span><span>i-SPPD TAD<small>Belum terdokumentasi</small></span></div>
+            <div class="progress-item na"><span class="progress-state" aria-label="Bukan fitur API">—</span><span>Lainnya<small>Item navigasi, bukan fitur API tersendiri</small></span></div>
+          </div>
+        </section>
 
         <section class="feature" id="presensi">
           <div class="feature-head"><div><h2>Presensi harian</h2><p>Validasi lokasi, unggah foto, dan kirim proses presensi masuk/pulang.</p></div><span class="number">01</span></div>
@@ -68,11 +92,7 @@
   "action": "APPROVE",
   "keterangan_reviewer": "Disetujui"
 }</code></pre>
-          <p class="note">Untuk reject reviewer, gunakan <code>action: "REFUSE"</code>. Field lokasi bersifat opsional pada body pembuatan. Rute <code>/absensi_request/detail</code> dan <code>/absensi_request/submit</code> masih dipakai oleh layar detail approval attendance lama; keduanya legacy dan bukan alur Odoo submissions v1.</p>
-          <div class="table-wrap"><table><thead><tr><th>Method</th><th>Endpoint legacy aktif</th><th>Kegunaan</th></tr></thead><tbody>
-            <tr><td><span class="method post">POST</span></td><td><code>/absensi_request/detail</code></td><td>Memuat detail pada layar approval attendance lama; ID dikirim pada body sebagai <code>unix</code>.</td></tr>
-            <tr><td><span class="method post">POST</span></td><td><code>/absensi_request/submit</code></td><td>Aksi approve/reject dari layar tersebut; body memakai <code>unix</code>, <code>approve</code>, dan <code>keteranganApprove</code>.</td></tr>
-          </tbody></table></div>
+          <p class="note">Untuk reject reviewer, gunakan <code>action: "REFUSE"</code>. Field lokasi bersifat opsional pada body pembuatan.</p>
         </section>
 
         <section class="feature" id="koreksi">
