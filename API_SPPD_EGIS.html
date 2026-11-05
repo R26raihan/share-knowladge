@@ -1,9 +1,38 @@
-<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>API SPPD EGIS — Pengajuan dan Realisasi</title><style>body{max-width:1150px;margin:40px auto;padding:0 24px;font:16px/1.7 system-ui,sans-serif;color:#191b20}a{color:#bd2828}h1,h2,h3{line-height:1.25}h2{margin-top:44px}table{border-collapse:collapse;display:block;overflow:auto;width:100%;font-size:14px}td,th{border:1px solid #ddd;padding:12px;text-align:left;vertical-align:top}th{background:#f3f4f6}pre{overflow:auto;background:#f3f4f6;padding:20px}code{font-size:13px;overflow-wrap:anywhere}p{overflow-wrap:anywhere}</style></head><body><nav><a href="index.html">← Dokumentasi iOffice</a> · <a href="API_SPPD_EGIS.md">Versi Markdown</a></nav><h1>API SPPD EGIS — Pengajuan dan Realisasi</h1>
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>API SPPD EGIS — Pengajuan dan Realisasi</title><style>body{max-width:1150px;margin:40px auto;padding:0 24px;font:16px/1.7 system-ui,sans-serif;color:#191b20}a{color:#bd2828}h1,h2,h3{line-height:1.25}h2{margin-top:44px}table{border-collapse:collapse;display:block;overflow:auto;width:100%;font-size:14px}td,th{border:1px solid #ddd;padding:12px;text-align:left;vertical-align:top}th{background:#f3f4f6}pre{overflow:auto;background:#f3f4f6;padding:20px}code{font-size:13px;overflow-wrap:anywhere}p{overflow-wrap:anywhere}</style></head><body><nav><a href="index.html">← Dokumentasi iOffice</a> · <a href="API_SPPD_EGIS.md">Versi Markdown</a></nav><div class="toc">
+<ul>
+<li><a href="#api-sppd-egis-pengajuan-dan-realisasi">API SPPD EGIS — Pengajuan dan Realisasi</a><ul>
+<li><a href="#koneksi-dan-autentikasi">Koneksi dan autentikasi</a></li>
+<li><a href="#pengajuan-sppd">Pengajuan SPPD</a><ul>
+<li><a href="#payload-pembuatan-pengajuan">Payload pembuatan pengajuan</a></li>
+<li><a href="#urutan-pengajuan-di-aplikasi">Urutan pengajuan di aplikasi</a></li>
+</ul>
+</li>
+<li><a href="#realisasi-sppd">Realisasi SPPD</a><ul>
+<li><a href="#alur-bukti-perjalanan-dan-pengajuan-ulang">Alur bukti perjalanan dan pengajuan ulang</a></li>
+</ul>
+</li>
+<li><a href="#master-pendukung-form">Master pendukung form</a><ul>
+<li><a href="#get-negara-country">GET negara / country</a></li>
+<li><a href="#get-provinsi">GET provinsi</a></li>
+<li><a href="#get-kabupaten-kota">GET kabupaten / kota</a></li>
+<li><a href="#get-opsi-kota-sppd">GET opsi kota SPPD</a></li>
+<li><a href="#get-lokasi-sppd-dan-location-name">GET lokasi SPPD dan Location Name</a></li>
+<li><a href="#get-tipe-perjalanan-kategori-sppd-dan-transportasi">GET tipe perjalanan, kategori SPPD, dan transportasi</a></li>
+<li><a href="#bentuk-respons-master-yang-dibaca-client">Bentuk respons master yang dibaca client</a></li>
+</ul>
+</li>
+<li><a href="#pagination-respons-dan-batas-cakupan">Pagination, respons, dan batas cakupan</a></li>
+<li><a href="#sumber-implementasi">Sumber implementasi</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="api-sppd-egis-pengajuan-dan-realisasi">API SPPD EGIS — Pengajuan dan Realisasi</h1>
 <p>Diperbarui: 5 November 2026. Referensi berdasarkan implementasi aplikasi mobile <code>ioffice_plneg</code>, bukan hasil pengujian server langsung. Hanya endpoint berawalan <code>/api/v1</code> yang dicantumkan pada tabel API.</p>
-<h2>Koneksi dan autentikasi</h2>
+<h2 id="koneksi-dan-autentikasi">Koneksi dan autentikasi</h2>
 <p>URL: <code>{BASE_URL_ODOO}/api/v1/...</code>. Base URL berasal dari konfigurasi environment melalui <code>ApiConfig.baseUrl</code> dan dapat dioverride saat membuat <code>ApiFactory</code>. Jangan menggandakan <code>/api/v1</code> pada base URL.</p>
 <p>Header: <code>Authorization: Bearer &lt;access_token&gt;</code>, ditambahkan oleh interceptor <code>DioClient</code>. Payload biasa berupa JSON; unggahan menggunakan <code>multipart/form-data</code> dengan boundary dari HTTP client. ID pada contoh hanya ilustrasi; gunakan ID dari respons/master aktual.</p>
-<h2>Pengajuan SPPD</h2>
+<h2 id="pengajuan-sppd">Pengajuan SPPD</h2>
 <table>
 <thead>
 <tr>
@@ -75,7 +104,7 @@
 </tr>
 </tbody>
 </table>
-<h3>Payload pembuatan pengajuan</h3>
+<h3 id="payload-pembuatan-pengajuan">Payload pembuatan pengajuan</h3>
 <p>Contoh struktur yang diserialisasi <code>CreateSppdRequest.toJson()</code>; bukan pernyataan bahwa semua field wajib di backend. Tanggal contoh menggunakan <code>YYYY-MM-DD</code>.</p>
 <pre><code class="language-json">{
   &quot;employee_id&quot;: 123,
@@ -111,7 +140,7 @@
 </code></pre>
 <p>ID bertipe integer, harga bertipe number, <code>is_lumpsum</code> boolean, dan field teks/tanggal bertipe string. Nilai <code>null</code> dibuang. Array <code>trips</code>, <code>transportations</code>, dan <code>documents</code> hanya dikirim jika tidak null. Field kota pada <code>trips</code> bernama <code>kota_asal_id</code>/<code>kota_tujuan_id</code>, sedangkan pada <code>transportations</code> bernama <code>city_from</code>/<code>city_to</code>.</p>
 <p>Perilaku serializer saat ini: <code>document_date</code> fallback ke <code>start_date</code>, <code>sppd_location_line_id</code> default <code>1</code>, <code>is_lumpsum</code> default <code>false</code>; <code>source_document</code> fallback ke internal order lama atau nomor <code>ST/...</code> yang dibentuk mobile. <code>sppd_location</code> fallback ke <code>sppd_by_location_id</code>; <code>tipe_perjalanan</code> fallback ke <code>sppd_by_type_id</code>. <strong>Field <code>sppd_type</code> tidak dikirim</strong> karena kategori SPPD sementara disembunyikan pada UI. Field lama seperti <code>erp_prk</code>, <code>erp_coa</code>, dan <code>sppd_details</code> bukan bagian payload JSON baru ini.</p>
-<h3>Urutan pengajuan di aplikasi</h3>
+<h3 id="urutan-pengajuan-di-aplikasi">Urutan pengajuan di aplikasi</h3>
 <ol>
 <li>POST <code>/api/v1/sppd/requests</code> untuk membuat draft dan mengambil ID pengajuan dari respons.</li>
 <li>Jika ada lampiran lokal, upload setiap file melalui <code>/api/v1/sppd/attachments/upload</code> dengan <code>sppd_request_id</code> tersebut.</li>
@@ -119,7 +148,7 @@
 <li>Gunakan daftar need-approval/admin dan aksi approval sesuai tahap serta hak pengguna.</li>
 </ol>
 <p>Create menerima HTTP 200 atau 201. Mobile juga memeriksa <code>status=error</code> atau <code>success=false</code>. Jika respons create tidak menyediakan ID, proses submit dihentikan. Create, upload, dan submit merupakan request terpisah; kegagalan sesudah create dapat meninggalkan draft.</p>
-<h2>Realisasi SPPD</h2>
+<h2 id="realisasi-sppd">Realisasi SPPD</h2>
 <p><code>{realization_id}</code> adalah ID realisasi, berbeda dari ID pengajuan. <code>{id_transportation}</code> adalah ID baris transportasi realisasi, bukan ID master moda transportasi.</p>
 <table>
 <thead>
@@ -182,12 +211,12 @@
 </tr>
 </tbody>
 </table>
-<h3>Alur bukti perjalanan dan pengajuan ulang</h3>
+<h3 id="alur-bukti-perjalanan-dan-pengajuan-ulang">Alur bukti perjalanan dan pengajuan ulang</h3>
 <p>Ambil detail realisasi, unggah e-ticket per baris transportasi beserta harga, lalu unggah dokumen pendukung. Invoice, boarding pass, dan e-ticket umum pada form bukti perjalanan menggunakan endpoint <strong>documents realisasi</strong>, bukan attachments pengajuan. E-ticket yang terkait baris transportasi menggunakan endpoint <strong>transportations/.../eticket</strong>.</p>
 <p>Form mobile memvalidasi harga tiket sebagai angka &gt;= 0 untuk setiap e-ticket transportasi yang dipilih. Timeout kirim/terima unggahan pengajuan, dokumen, dan e-ticket adalah 120 detik.</p>
 <p>Gunakan kapabilitas respons detail seperti <code>can_edit</code>, <code>can_submit</code>, <code>submit_block_reason</code>, <code>can_approve</code>, dan <code>can_pengajuan_ulang</code> untuk menentukan aksi yang tersedia. Detail juga dibaca melalui field <code>approval_steps</code>, <code>trips</code>, <code>transportations</code>, <code>documents</code>, <code>reject_reason</code>, <code>request_amount</code>, <code>untaxed_amount</code>, <code>selisih_amount</code>, dan <code>selisih_status</code>.</p>
 <p>Wrapper <code>SppdApi</code> saat ini tidak menyediakan POST create maupun PUT/PATCH edit realisasi pada <code>/api/v1/sppd/realizations</code>. Dokumentasi ini tidak mengasumsikan endpoint tersebut tersedia.</p>
-<h2>Master pendukung form</h2>
+<h2 id="master-pendukung-form">Master pendukung form</h2>
 <table>
 <thead>
 <tr>
@@ -244,11 +273,214 @@
 </tr>
 </tbody>
 </table>
-<h2>Pagination, respons, dan batas cakupan</h2>
+<h3 id="get-negara-country">GET negara / country</h3>
+<p>Endpoint: <code>/api/v1/sppd/options/countries</code>. Dipanggil oleh <code>getCountries()</code> untuk pilihan negara SPPD.</p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Tipe</th>
+<th>Perilaku mobile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>search</code></td>
+<td>string</td>
+<td>Opsional; tidak dikirim jika kosong.</td>
+</tr>
+<tr>
+<td><code>sppd_location_line_id</code></td>
+<td>integer</td>
+<td>Opsional pada wrapper; digunakan untuk memfilter negara berdasarkan pilihan SPPD Location Name. Bukan <code>sppd_location_id</code>.</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td>integer</td>
+<td>Default 1.</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>integer</td>
+<td>Default 100.</td>
+</tr>
+</tbody>
+</table>
+<p>Contoh request (ID hanya ilustrasi):</p>
+<pre><code class="language-http">GET /api/v1/sppd/options/countries?sppd_location_line_id=2&amp;search=Japan&amp;page=1&amp;limit=100
+Authorization: Bearer &lt;access_token&gt;
+</code></pre>
+<p>Datasource menggabungkan hasil seluruh halaman: mulai <code>page=1</code>, naik selama <code>pagination.has_next == true</code>. Jika <code>pagination</code> tidak tersedia atau <code>has_next</code> bukan true, perulangan berhenti. HTTP selain 200 atau <code>success=false</code> dianggap gagal. Ketika pilihan location line di form berubah, aplikasi memuat negara menggunakan ID location line yang dipilih.</p>
+<h3 id="get-provinsi">GET provinsi</h3>
+<p>Endpoint: <code>/api/v1/master/provinces</code>. Dipanggil oleh <code>getProvinceList()</code> melalui <code>getMasterProvinces()</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Tipe</th>
+<th>Perilaku mobile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>search</code></td>
+<td>string</td>
+<td>Opsional; tidak dikirim jika kosong.</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-http">GET /api/v1/master/provinces?search=Jawa
+Authorization: Bearer &lt;access_token&gt;
+</code></pre>
+<p>Tanpa pencarian, panggil <code>/api/v1/master/provinces</code>. Wrapper ini tidak mengirim <code>page</code>, <code>limit</code>, atau filter negara. ID provinsi dipakai sebagai <code>province_id</code> pada request kabupaten/kota. Pada BLoC create SPPD, pencarian provinsi juga dapat dilakukan lokal terhadap master yang sudah dimuat.</p>
+<h3 id="get-kabupaten-kota">GET kabupaten / kota</h3>
+<p>Endpoint: <code>/api/v1/master/cities</code>. Inilah endpoint yang digunakan datasource untuk daftar kabupaten/kota dan daftar berdasarkan provinsi.</p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Tipe</th>
+<th>Perilaku mobile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>province_id</code></td>
+<td>integer</td>
+<td>Opsional; hanya dikirim jika &gt; 0. Memfilter berdasarkan ID provinsi.</td>
+</tr>
+<tr>
+<td><code>jenis</code></td>
+<td>string</td>
+<td>Opsional di wrapper; datasource <code>getCityList()</code> dan <code>getCityByProvince()</code> saat ini mengirim <strong><code>kabupaten</code></strong>.</td>
+</tr>
+<tr>
+<td><code>search</code></td>
+<td>string</td>
+<td>Opsional; tidak dikirim jika kosong.</td>
+</tr>
+</tbody>
+</table>
+<p>Semua kabupaten/kota yang diminta form:</p>
+<pre><code class="language-http">GET /api/v1/master/cities?jenis=kabupaten
+Authorization: Bearer &lt;access_token&gt;
+</code></pre>
+<p>Berdasarkan provinsi, dengan pencarian:</p>
+<pre><code class="language-http">GET /api/v1/master/cities?province_id=10&amp;jenis=kabupaten&amp;search=Bandung
+Authorization: Bearer &lt;access_token&gt;
+</code></pre>
+<p>Nilai <code>province_id=10</code> hanya contoh. Jangan mengasumsikan kode wilayah BPS sebagai ID master backend. Saat provinsi dipilih, BLoC memanggil <code>getCityByProvince(provinceId, '')</code>; pencarian kota juga tersedia lokal menggunakan nama dan relasi provinsi. Tidak ada parameter pagination pada wrapper master ini. Nilai enum <code>jenis</code> selain yang dikirim aplikasi belum diverifikasi terhadap backend.</p>
+<h3 id="get-opsi-kota-sppd">GET opsi kota SPPD</h3>
+<p>Endpoint terpisah: <code>/api/v1/sppd/options/cities</code>, melalui <code>getOptionCities()</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Tipe</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>limit</code></td>
+<td>integer</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>offset</code></td>
+<td>integer</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>search</code></td>
+<td>string</td>
+<td>Opsional; diabaikan jika kosong.</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-http">GET /api/v1/sppd/options/cities?search=Bandung&amp;limit=5&amp;offset=0
+Authorization: Bearer &lt;access_token&gt;
+</code></pre>
+<p>Endpoint opsi kota ini tersedia pada service, sedangkan <code>getCityList()</code>/<code>getCityByProvince()</code> menggunakan <code>/api/v1/master/cities</code>. Wrapper opsi kota tidak menerima <code>province_id</code> maupun <code>jenis</code>.</p>
+<h3 id="get-lokasi-sppd-dan-location-name">GET lokasi SPPD dan Location Name</h3>
+<ol>
+<li>Ambil jenis/lokasi SPPD melalui <code>/api/v1/sppd/locations?limit=5&amp;offset=0</code>.</li>
+<li>Ambil nama lokasi melalui <code>/api/v1/sppd/location-lines?sppd_location_id=1</code>. Query opsional lain adalah <code>name</code> untuk nama location line; wrapper ini tidak mengirim pagination.</li>
+<li>Untuk negara yang sesuai nama lokasi, gunakan <code>/api/v1/sppd/options/countries?sppd_location_line_id=2&amp;page=1&amp;limit=100</code>.</li>
+</ol>
+<p><code>sppd_location_id=1</code> dan <code>sppd_location_line_id=2</code> adalah contoh dari dua master berbeda. Payload create memakai nama field <strong><code>sppd_location</code></strong> untuk lokasi dan <strong><code>sppd_location_line_id</code></strong> untuk nama lokasi.</p>
+<h3 id="get-tipe-perjalanan-kategori-sppd-dan-transportasi">GET tipe perjalanan, kategori SPPD, dan transportasi</h3>
+<table>
+<thead>
+<tr>
+<th>Keperluan</th>
+<th>Contoh request</th>
+<th>Penggunaan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tipe perjalanan</td>
+<td><code>/api/v1/sppd/tipe-perjalanan</code></td>
+<td><code>getTypeCategory()</code>, tanpa query; pilihan untuk <code>tipe_perjalanan</code>.</td>
+</tr>
+<tr>
+<td>Kategori SPPD</td>
+<td><code>/api/v1/sppd/trips?limit=5&amp;offset=0</code></td>
+<td>Opsional <code>name</code> dan <code>is_tad=true</code>/<code>false</code>. Master <code>sppd_type</code>; kategori sedang disembunyikan dan field <code>sppd_type</code> tidak dikirim oleh serializer create.</td>
+</tr>
+<tr>
+<td>Moda transportasi</td>
+<td><code>/api/v1/sppd/transportations?limit=5&amp;offset=0</code></td>
+<td>ID pilihan dikirim pada <code>transportations[].transportation</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bentuk-respons-master-yang-dibaca-client">Bentuk respons master yang dibaca client</h3>
+<p><code>SppdMasterResponse</code> menerima array pada <code>data</code> atau <code>data.content</code>. Contoh berikut adalah ilustrasi format parser, bukan rekaman respons server:</p>
+<pre><code class="language-json">{
+  &quot;data&quot;: [
+    {&quot;id&quot;: 20, &quot;name&quot;: &quot;Kabupaten contoh&quot;, &quot;province_id&quot;: 10, &quot;province_name&quot;: &quot;Provinsi contoh&quot;}
+  ]
+}
+</code></pre>
+<p>Parser membaca <code>id</code> (integer atau string angka) dan <code>name</code>; nama juga dapat berasal dari <code>province_name</code>, <code>city_name</code>, <code>country_name</code>, atau <code>transportation_name</code>. Relasi provinsi dapat dibaca melalui <code>state_id</code>, <code>province_id</code>, atau <code>provinceId</code>, dan namanya melalui <code>state_name</code>, <code>province_name</code>, atau <code>provinceName</code>. Location line mendukung <code>sppd_location_id</code> dan <code>sppd_location_name</code>. Gunakan ID item terpilih untuk payload, bukan label nama.</p>
+<p>Pemetaan ke payload pengajuan:</p>
+<table>
+<thead>
+<tr>
+<th>Pilihan master</th>
+<th>Field payload</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Negara asal / tujuan</td>
+<td><code>trips[].country_from_id</code> / <code>country_to_id</code>; juga <code>transportations[].country_from_id</code> / <code>country_to_id</code> jika diisi.</td>
+</tr>
+<tr>
+<td>Kabupaten/kota asal / tujuan trip</td>
+<td><code>trips[].kota_asal_id</code> / <code>kota_tujuan_id</code>.</td>
+</tr>
+<tr>
+<td>Kabupaten/kota asal / tujuan transportasi</td>
+<td><code>transportations[].city_from</code> / <code>city_to</code>.</td>
+</tr>
+<tr>
+<td>Provinsi</td>
+<td>Dipakai untuk filter kota; tidak ada field provinsi tersendiri pada serializer trip baru.</td>
+</tr>
+<tr>
+<td>Lokasi SPPD / nama lokasi</td>
+<td><code>sppd_location</code> / <code>sppd_location_line_id</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pagination-respons-dan-batas-cakupan">Pagination, respons, dan batas cakupan</h2>
 <p>Pengajuan memakai <code>page</code>/<code>limit</code>; daftar realisasi dan approval admin memakai <code>offset</code>/<code>limit</code>; need-approval memakai <code>page</code>/<code>limit</code>. Filter daftar pengajuan memakai <strong>state</strong>, sedangkan daftar realisasi memakai <strong>status</strong>. Pada wrapper kedua daftar, alias argumen <code>startDate</code>/<code>endDate</code> dikirim sebagai <code>date_from</code>/<code>date_to</code>; argumen <code>dateFrom</code>/<code>dateTo</code> diprioritaskan.</p>
 <p>Parser daftar pengajuan mendukung <code>data: [...]</code> dengan <code>pagination</code> berisi <code>page</code>, <code>limit</code>, <code>total_data</code>, <code>total_page</code>, <code>has_next</code>, serta beberapa format kompatibilitas. Jangan menyamakan <code>count</code> jumlah item halaman dengan total data. Dokumen ini mencatat parameter dan field yang dipakai client; skema respons lengkap, kewajiban field backend, batas ukuran/tipe file, dan seluruh enum state perlu merujuk kontrak backend.</p>
 <p>Beberapa wrapper lama tetap berada di kode, misalnya <code>sppd/api/pascaSppd</code> untuk <code>sppdReport</code>/<code>submitReport</code>, <code>sppd/api/adjustment</code>, dan endpoint reimbursement. Path tersebut <strong>bukan API v1</strong> dan tidak diubah menjadi <code>/api/v1</code> dalam dokumentasi ini.</p>
-<h2>Sumber implementasi</h2>
+<h2 id="sumber-implementasi">Sumber implementasi</h2>
 <p>Path relatif terhadap root repository <code>ioffice_plneg</code>:</p>
 <ul>
 <li><code>lib/core/network/api/sppd/sppd_endpoints.dart</code> — path endpoint.</li>

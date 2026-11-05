@@ -117,6 +117,124 @@ Wrapper `SppdApi` saat ini tidak menyediakan POST create maupun PUT/PATCH edit r
 | GET | `/api/v1/master/provinces` | Opsional `search`. |
 | GET | `/api/v1/master/cities` | Opsional `province_id` (> 0), `jenis`, `search`. |
 
+### GET negara / country
+
+Endpoint: `/api/v1/sppd/options/countries`. Dipanggil oleh `getCountries()` untuk pilihan negara SPPD.
+
+| Query | Tipe | Perilaku mobile |
+| --- | --- | --- |
+| `search` | string | Opsional; tidak dikirim jika kosong. |
+| `sppd_location_line_id` | integer | Opsional pada wrapper; digunakan untuk memfilter negara berdasarkan pilihan SPPD Location Name. Bukan `sppd_location_id`. |
+| `page` | integer | Default 1. |
+| `limit` | integer | Default 100. |
+
+Contoh request (ID hanya ilustrasi):
+
+```http
+GET /api/v1/sppd/options/countries?sppd_location_line_id=2&search=Japan&page=1&limit=100
+Authorization: Bearer <access_token>
+```
+
+Datasource menggabungkan hasil seluruh halaman: mulai `page=1`, naik selama `pagination.has_next == true`. Jika `pagination` tidak tersedia atau `has_next` bukan true, perulangan berhenti. HTTP selain 200 atau `success=false` dianggap gagal. Ketika pilihan location line di form berubah, aplikasi memuat negara menggunakan ID location line yang dipilih.
+
+### GET provinsi
+
+Endpoint: `/api/v1/master/provinces`. Dipanggil oleh `getProvinceList()` melalui `getMasterProvinces()`.
+
+| Query | Tipe | Perilaku mobile |
+| --- | --- | --- |
+| `search` | string | Opsional; tidak dikirim jika kosong. |
+
+```http
+GET /api/v1/master/provinces?search=Jawa
+Authorization: Bearer <access_token>
+```
+
+Tanpa pencarian, panggil `/api/v1/master/provinces`. Wrapper ini tidak mengirim `page`, `limit`, atau filter negara. ID provinsi dipakai sebagai `province_id` pada request kabupaten/kota. Pada BLoC create SPPD, pencarian provinsi juga dapat dilakukan lokal terhadap master yang sudah dimuat.
+
+### GET kabupaten / kota
+
+Endpoint: `/api/v1/master/cities`. Inilah endpoint yang digunakan datasource untuk daftar kabupaten/kota dan daftar berdasarkan provinsi.
+
+| Query | Tipe | Perilaku mobile |
+| --- | --- | --- |
+| `province_id` | integer | Opsional; hanya dikirim jika > 0. Memfilter berdasarkan ID provinsi. |
+| `jenis` | string | Opsional di wrapper; datasource `getCityList()` dan `getCityByProvince()` saat ini mengirim **`kabupaten`**. |
+| `search` | string | Opsional; tidak dikirim jika kosong. |
+
+Semua kabupaten/kota yang diminta form:
+
+```http
+GET /api/v1/master/cities?jenis=kabupaten
+Authorization: Bearer <access_token>
+```
+
+Berdasarkan provinsi, dengan pencarian:
+
+```http
+GET /api/v1/master/cities?province_id=10&jenis=kabupaten&search=Bandung
+Authorization: Bearer <access_token>
+```
+
+Nilai `province_id=10` hanya contoh. Jangan mengasumsikan kode wilayah BPS sebagai ID master backend. Saat provinsi dipilih, BLoC memanggil `getCityByProvince(provinceId, '')`; pencarian kota juga tersedia lokal menggunakan nama dan relasi provinsi. Tidak ada parameter pagination pada wrapper master ini. Nilai enum `jenis` selain yang dikirim aplikasi belum diverifikasi terhadap backend.
+
+### GET opsi kota SPPD
+
+Endpoint terpisah: `/api/v1/sppd/options/cities`, melalui `getOptionCities()`.
+
+| Query | Tipe | Default |
+| --- | --- | --- |
+| `limit` | integer | 5 |
+| `offset` | integer | 0 |
+| `search` | string | Opsional; diabaikan jika kosong. |
+
+```http
+GET /api/v1/sppd/options/cities?search=Bandung&limit=5&offset=0
+Authorization: Bearer <access_token>
+```
+
+Endpoint opsi kota ini tersedia pada service, sedangkan `getCityList()`/`getCityByProvince()` menggunakan `/api/v1/master/cities`. Wrapper opsi kota tidak menerima `province_id` maupun `jenis`.
+
+### GET lokasi SPPD dan Location Name
+
+1. Ambil jenis/lokasi SPPD melalui `/api/v1/sppd/locations?limit=5&offset=0`.
+2. Ambil nama lokasi melalui `/api/v1/sppd/location-lines?sppd_location_id=1`. Query opsional lain adalah `name` untuk nama location line; wrapper ini tidak mengirim pagination.
+3. Untuk negara yang sesuai nama lokasi, gunakan `/api/v1/sppd/options/countries?sppd_location_line_id=2&page=1&limit=100`.
+
+`sppd_location_id=1` dan `sppd_location_line_id=2` adalah contoh dari dua master berbeda. Payload create memakai nama field **`sppd_location`** untuk lokasi dan **`sppd_location_line_id`** untuk nama lokasi.
+
+### GET tipe perjalanan, kategori SPPD, dan transportasi
+
+| Keperluan | Contoh request | Penggunaan |
+| --- | --- | --- |
+| Tipe perjalanan | `/api/v1/sppd/tipe-perjalanan` | `getTypeCategory()`, tanpa query; pilihan untuk `tipe_perjalanan`. |
+| Kategori SPPD | `/api/v1/sppd/trips?limit=5&offset=0` | Opsional `name` dan `is_tad=true`/`false`. Master `sppd_type`; kategori sedang disembunyikan dan field `sppd_type` tidak dikirim oleh serializer create. |
+| Moda transportasi | `/api/v1/sppd/transportations?limit=5&offset=0` | ID pilihan dikirim pada `transportations[].transportation`. |
+
+### Bentuk respons master yang dibaca client
+
+`SppdMasterResponse` menerima array pada `data` atau `data.content`. Contoh berikut adalah ilustrasi format parser, bukan rekaman respons server:
+
+```json
+{
+  "data": [
+    {"id": 20, "name": "Kabupaten contoh", "province_id": 10, "province_name": "Provinsi contoh"}
+  ]
+}
+```
+
+Parser membaca `id` (integer atau string angka) dan `name`; nama juga dapat berasal dari `province_name`, `city_name`, `country_name`, atau `transportation_name`. Relasi provinsi dapat dibaca melalui `state_id`, `province_id`, atau `provinceId`, dan namanya melalui `state_name`, `province_name`, atau `provinceName`. Location line mendukung `sppd_location_id` dan `sppd_location_name`. Gunakan ID item terpilih untuk payload, bukan label nama.
+
+Pemetaan ke payload pengajuan:
+
+| Pilihan master | Field payload |
+| --- | --- |
+| Negara asal / tujuan | `trips[].country_from_id` / `country_to_id`; juga `transportations[].country_from_id` / `country_to_id` jika diisi. |
+| Kabupaten/kota asal / tujuan trip | `trips[].kota_asal_id` / `kota_tujuan_id`. |
+| Kabupaten/kota asal / tujuan transportasi | `transportations[].city_from` / `city_to`. |
+| Provinsi | Dipakai untuk filter kota; tidak ada field provinsi tersendiri pada serializer trip baru. |
+| Lokasi SPPD / nama lokasi | `sppd_location` / `sppd_location_line_id`. |
+
 ## Pagination, respons, dan batas cakupan
 
 Pengajuan memakai `page`/`limit`; daftar realisasi dan approval admin memakai `offset`/`limit`; need-approval memakai `page`/`limit`. Filter daftar pengajuan memakai **state**, sedangkan daftar realisasi memakai **status**. Pada wrapper kedua daftar, alias argumen `startDate`/`endDate` dikirim sebagai `date_from`/`date_to`; argumen `dateFrom`/`dateTo` diprioritaskan.
