@@ -1,0 +1,261 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>API SPPD EGIS — Pengajuan dan Realisasi</title><style>body{max-width:1150px;margin:40px auto;padding:0 24px;font:16px/1.7 system-ui,sans-serif;color:#191b20}a{color:#bd2828}h1,h2,h3{line-height:1.25}h2{margin-top:44px}table{border-collapse:collapse;display:block;overflow:auto;width:100%;font-size:14px}td,th{border:1px solid #ddd;padding:12px;text-align:left;vertical-align:top}th{background:#f3f4f6}pre{overflow:auto;background:#f3f4f6;padding:20px}code{font-size:13px;overflow-wrap:anywhere}p{overflow-wrap:anywhere}</style></head><body><nav><a href="index.html">← Dokumentasi iOffice</a> · <a href="API_SPPD_EGIS.md">Versi Markdown</a></nav><h1>API SPPD EGIS — Pengajuan dan Realisasi</h1>
+<p>Diperbarui: 5 November 2026. Referensi berdasarkan implementasi aplikasi mobile <code>ioffice_plneg</code>, bukan hasil pengujian server langsung. Hanya endpoint berawalan <code>/api/v1</code> yang dicantumkan pada tabel API.</p>
+<h2>Koneksi dan autentikasi</h2>
+<p>URL: <code>{BASE_URL_ODOO}/api/v1/...</code>. Base URL berasal dari konfigurasi environment melalui <code>ApiConfig.baseUrl</code> dan dapat dioverride saat membuat <code>ApiFactory</code>. Jangan menggandakan <code>/api/v1</code> pada base URL.</p>
+<p>Header: <code>Authorization: Bearer &lt;access_token&gt;</code>, ditambahkan oleh interceptor <code>DioClient</code>. Payload biasa berupa JSON; unggahan menggunakan <code>multipart/form-data</code> dengan boundary dari HTTP client. ID pada contoh hanya ilustrasi; gunakan ID dari respons/master aktual.</p>
+<h2>Pengajuan SPPD</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Parameter / body yang dikirim mobile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/sppd/requests</code></td>
+<td>Query <code>page=1</code>, <code>limit=5</code>; opsional <code>search</code>, <code>state</code>, <code>employee_id</code>, <code>date_from</code>, <code>date_to</code>. Wrapper juga menerima tambahan <code>queryParameters</code>.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/sppd/requests/{id}</code></td>
+<td>ID pengajuan.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/v1/sppd/requests</code></td>
+<td>JSON pengajuan, lihat contoh di bawah.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/v1/sppd/attachments/upload</code></td>
+<td>Multipart: <code>file</code>; opsional <code>sppd_request_id</code> (integer). Nama file dapat dioverride oleh caller.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/v1/sppd/requests/{id}/submit</code></td>
+<td>Tanpa body eksplisit. Ajukan draft.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/v1/sppd/requests/{id}/get-cost-list</code></td>
+<td>JSON <code>{}</code>. Ambil biaya dari pemetaan biaya.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/sppd/need-approval</code></td>
+<td>Query <code>hanya_bisa_approve=false</code>, <code>page=1</code>, <code>limit=10</code>; opsional <code>state</code>, <code>date_from</code>, <code>date_to</code>, <code>search</code>. <code>state=all</code> diabaikan dan spasi dalam state diganti <code>_</code>.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/sppd/approvals/admin</code></td>
+<td>Query <code>state=approve_travel_admin</code>, <code>limit=5</code>, <code>offset=0</code>; opsional <code>search</code>, <code>employee_id</code> (integer).</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/v1/sppd/requests/{id}/approve-atasan</code></td>
+<td>Tanpa body eksplisit.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/v1/sppd/requests/{id}/approve-travel-admin</code></td>
+<td>Tanpa body eksplisit.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/v1/sppd/requests/{id}/reject</code></td>
+<td>Tanpa body eksplisit; wrapper saat ini tidak mengirim alasan penolakan.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/v1/sppd/requests/{id}/cancel</code></td>
+<td>Tanpa body eksplisit.</td>
+</tr>
+</tbody>
+</table>
+<h3>Payload pembuatan pengajuan</h3>
+<p>Contoh struktur yang diserialisasi <code>CreateSppdRequest.toJson()</code>; bukan pernyataan bahwa semua field wajib di backend. Tanggal contoh menggunakan <code>YYYY-MM-DD</code>.</p>
+<pre><code class="language-json">{
+  &quot;employee_id&quot;: 123,
+  &quot;activity&quot;: &quot;Perjalanan dinas koordinasi&quot;,
+  &quot;source_document&quot;: &quot;ST/2026/001&quot;,
+  &quot;document_date&quot;: &quot;2026-11-05&quot;,
+  &quot;start_date&quot;: &quot;2026-11-06&quot;,
+  &quot;end_date&quot;: &quot;2026-11-07&quot;,
+  &quot;sppd_location&quot;: 1,
+  &quot;sppd_location_line_id&quot;: 1,
+  &quot;tipe_perjalanan&quot;: 1,
+  &quot;description&quot;: &quot;Koordinasi pekerjaan&quot;,
+  &quot;is_lumpsum&quot;: false,
+  &quot;trips&quot;: [{
+    &quot;country_from_id&quot;: 100,
+    &quot;country_to_id&quot;: 100,
+    &quot;kota_asal_id&quot;: 10,
+    &quot;kota_tujuan_id&quot;: 20,
+    &quot;start_date&quot;: &quot;2026-11-06&quot;,
+    &quot;end_date&quot;: &quot;2026-11-07&quot;
+  }],
+  &quot;transportations&quot;: [{
+    &quot;country_from_id&quot;: 100,
+    &quot;country_to_id&quot;: 100,
+    &quot;city_from&quot;: 10,
+    &quot;city_to&quot;: 20,
+    &quot;date_ticket&quot;: &quot;2026-11-06&quot;,
+    &quot;transportation&quot;: 1,
+    &quot;price&quot;: 500000
+  }],
+  &quot;documents&quot;: [{&quot;url&quot;: &quot;https://files.example.com/surat-tugas.pdf&quot;}]
+}
+</code></pre>
+<p>ID bertipe integer, harga bertipe number, <code>is_lumpsum</code> boolean, dan field teks/tanggal bertipe string. Nilai <code>null</code> dibuang. Array <code>trips</code>, <code>transportations</code>, dan <code>documents</code> hanya dikirim jika tidak null. Field kota pada <code>trips</code> bernama <code>kota_asal_id</code>/<code>kota_tujuan_id</code>, sedangkan pada <code>transportations</code> bernama <code>city_from</code>/<code>city_to</code>.</p>
+<p>Perilaku serializer saat ini: <code>document_date</code> fallback ke <code>start_date</code>, <code>sppd_location_line_id</code> default <code>1</code>, <code>is_lumpsum</code> default <code>false</code>; <code>source_document</code> fallback ke internal order lama atau nomor <code>ST/...</code> yang dibentuk mobile. <code>sppd_location</code> fallback ke <code>sppd_by_location_id</code>; <code>tipe_perjalanan</code> fallback ke <code>sppd_by_type_id</code>. <strong>Field <code>sppd_type</code> tidak dikirim</strong> karena kategori SPPD sementara disembunyikan pada UI. Field lama seperti <code>erp_prk</code>, <code>erp_coa</code>, dan <code>sppd_details</code> bukan bagian payload JSON baru ini.</p>
+<h3>Urutan pengajuan di aplikasi</h3>
+<ol>
+<li>POST <code>/api/v1/sppd/requests</code> untuk membuat draft dan mengambil ID pengajuan dari respons.</li>
+<li>Jika ada lampiran lokal, upload setiap file melalui <code>/api/v1/sppd/attachments/upload</code> dengan <code>sppd_request_id</code> tersebut.</li>
+<li>POST <code>/api/v1/sppd/requests/{id}/submit</code> untuk mengajukan ke approval.</li>
+<li>Gunakan daftar need-approval/admin dan aksi approval sesuai tahap serta hak pengguna.</li>
+</ol>
+<p>Create menerima HTTP 200 atau 201. Mobile juga memeriksa <code>status=error</code> atau <code>success=false</code>. Jika respons create tidak menyediakan ID, proses submit dihentikan. Create, upload, dan submit merupakan request terpisah; kegagalan sesudah create dapat meninggalkan draft.</p>
+<h2>Realisasi SPPD</h2>
+<p><code>{realization_id}</code> adalah ID realisasi, berbeda dari ID pengajuan. <code>{id_transportation}</code> adalah ID baris transportasi realisasi, bukan ID master moda transportasi.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Parameter / body yang dikirim mobile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/sppd/realizations</code></td>
+<td>Query <code>include_split=false</code>, <code>limit=5</code>, <code>offset=0</code>; opsional <code>status</code>, <code>sppd_request_id</code> (integer), <code>employee_id</code>, <code>search</code>, <code>date_from</code>, <code>date_to</code>.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/sppd/realizations/{realization_id}</code></td>
+<td>Detail realisasi.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/sppd/realizations/need-approval</code></td>
+<td>Query <code>hanya_bisa_approve=false</code>, <code>page=1</code>, <code>limit=10</code>; opsional <code>state</code>, <code>date_from</code>, <code>date_to</code>, <code>search</code>.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/v1/sppd/realizations/{realization_id}/submit</code></td>
+<td>Tanpa body eksplisit. Draft ke tahap approval atasan.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/v1/sppd/realizations/{realization_id}/approve</code></td>
+<td>Tanpa body eksplisit. Menyetujui tahap yang berjalan.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/v1/sppd/realizations/{realization_id}/reject</code></td>
+<td>JSON <code>{"reason":"Alasan penolakan"}</code>. <code>reason</code> wajib pada wrapper mobile.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/v1/sppd/realizations/{realization_id}/pengajuan-ulang</code></td>
+<td>Tanpa body eksplisit. Ajukan ulang realisasi rejected setelah koreksi harga tiket/e-ticket.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/v1/sppd/realizations/{realization_id}/transportations/{id_transportation}/eticket</code></td>
+<td>Multipart: <code>file</code> dan <code>hargaTicket</code> (number). Perhatikan kapitalisasi <code>hargaTicket</code>.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/v1/sppd/realizations/{realization_id}/documents</code></td>
+<td>Multipart: <code>file</code>; opsional <code>description</code> (string nonkosong).</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/api/v1/sppd/realizations/{realization_id}/documents/{document_id}</code></td>
+<td>ID dokumen realisasi; tanpa body eksplisit.</td>
+</tr>
+</tbody>
+</table>
+<h3>Alur bukti perjalanan dan pengajuan ulang</h3>
+<p>Ambil detail realisasi, unggah e-ticket per baris transportasi beserta harga, lalu unggah dokumen pendukung. Invoice, boarding pass, dan e-ticket umum pada form bukti perjalanan menggunakan endpoint <strong>documents realisasi</strong>, bukan attachments pengajuan. E-ticket yang terkait baris transportasi menggunakan endpoint <strong>transportations/.../eticket</strong>.</p>
+<p>Form mobile memvalidasi harga tiket sebagai angka &gt;= 0 untuk setiap e-ticket transportasi yang dipilih. Timeout kirim/terima unggahan pengajuan, dokumen, dan e-ticket adalah 120 detik.</p>
+<p>Gunakan kapabilitas respons detail seperti <code>can_edit</code>, <code>can_submit</code>, <code>submit_block_reason</code>, <code>can_approve</code>, dan <code>can_pengajuan_ulang</code> untuk menentukan aksi yang tersedia. Detail juga dibaca melalui field <code>approval_steps</code>, <code>trips</code>, <code>transportations</code>, <code>documents</code>, <code>reject_reason</code>, <code>request_amount</code>, <code>untaxed_amount</code>, <code>selisih_amount</code>, dan <code>selisih_status</code>.</p>
+<p>Wrapper <code>SppdApi</code> saat ini tidak menyediakan POST create maupun PUT/PATCH edit realisasi pada <code>/api/v1/sppd/realizations</code>. Dokumentasi ini tidak mengasumsikan endpoint tersebut tersedia.</p>
+<h2>Master pendukung form</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Query yang dikirim mobile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/sppd/locations</code></td>
+<td><code>limit=5</code>, <code>offset=0</code>.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/sppd/location-lines</code></td>
+<td>Opsional <code>sppd_location_id</code>, <code>name</code>. Untuk pilihan <code>sppd_location_line_id</code>.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/sppd/tipe-perjalanan</code></td>
+<td>Tanpa query. Dipanggil melalui <code>getTypeCategory()</code>.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/sppd/trips</code></td>
+<td><code>limit=5</code>, <code>offset=0</code>; opsional <code>name</code>, <code>is_tad</code> (dikirim string boolean). Master kategori <code>sppd_type</code>; field ini saat ini tidak diserialisasi pada create.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/sppd/transportations</code></td>
+<td><code>limit=5</code>, <code>offset=0</code>.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/sppd/options/cities</code></td>
+<td><code>limit=5</code>, <code>offset=0</code>; opsional <code>search</code>.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/sppd/options/countries</code></td>
+<td><code>page=1</code>, <code>limit=100</code>; opsional <code>search</code>, <code>sppd_location_line_id</code>.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/master/provinces</code></td>
+<td>Opsional <code>search</code>.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/master/cities</code></td>
+<td>Opsional <code>province_id</code> (&gt; 0), <code>jenis</code>, <code>search</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2>Pagination, respons, dan batas cakupan</h2>
+<p>Pengajuan memakai <code>page</code>/<code>limit</code>; daftar realisasi dan approval admin memakai <code>offset</code>/<code>limit</code>; need-approval memakai <code>page</code>/<code>limit</code>. Filter daftar pengajuan memakai <strong>state</strong>, sedangkan daftar realisasi memakai <strong>status</strong>. Pada wrapper kedua daftar, alias argumen <code>startDate</code>/<code>endDate</code> dikirim sebagai <code>date_from</code>/<code>date_to</code>; argumen <code>dateFrom</code>/<code>dateTo</code> diprioritaskan.</p>
+<p>Parser daftar pengajuan mendukung <code>data: [...]</code> dengan <code>pagination</code> berisi <code>page</code>, <code>limit</code>, <code>total_data</code>, <code>total_page</code>, <code>has_next</code>, serta beberapa format kompatibilitas. Jangan menyamakan <code>count</code> jumlah item halaman dengan total data. Dokumen ini mencatat parameter dan field yang dipakai client; skema respons lengkap, kewajiban field backend, batas ukuran/tipe file, dan seluruh enum state perlu merujuk kontrak backend.</p>
+<p>Beberapa wrapper lama tetap berada di kode, misalnya <code>sppd/api/pascaSppd</code> untuk <code>sppdReport</code>/<code>submitReport</code>, <code>sppd/api/adjustment</code>, dan endpoint reimbursement. Path tersebut <strong>bukan API v1</strong> dan tidak diubah menjadi <code>/api/v1</code> dalam dokumentasi ini.</p>
+<h2>Sumber implementasi</h2>
+<p>Path relatif terhadap root repository <code>ioffice_plneg</code>:</p>
+<ul>
+<li><code>lib/core/network/api/sppd/sppd_endpoints.dart</code> — path endpoint.</li>
+<li><code>lib/core/network/api/sppd/sppd_api.dart</code> — method HTTP, query, body, multipart, timeout.</li>
+<li><code>lib/data/models/create_sppd_request.dart</code> — payload pengajuan aktual.</li>
+<li><code>lib/data/datasources/remote/isppd_remote_ds.dart</code> — rangkaian create/upload/submit dan penanganan respons.</li>
+<li><code>lib/data/models/isppd_model.dart</code> dan <code>lib/data/models/sppd_realization_model.dart</code> — parser respons.</li>
+<li><code>lib/presentation/screens/more/isppd/controllers/upload_bukti_perjalanan_controller.dart</code> — routing bukti perjalanan.</li>
+<li><code>lib/core/network/api/api_factory.dart</code>, <code>lib/core/network/api_config.dart</code>, <code>lib/core/network/dio_client.dart</code> — base URL dan autentikasi.</li>
+</ul></body></html>
